@@ -21,14 +21,14 @@
 
 \section{Quantum Error Correction}
 
-The main challenge of quantum computation is the fragility of the physical systems that are used to implement the qubits. In classical computation, information is encoded in macroscopic physical variables, and the logical states are separated by energy barriers that make them robust against enviromental fluctuations. Compared to classical bits, qubits are heavily affected by enviromental noise, which makes them degrade and lose their information due to decoherence. It is thus necessary to explore the most efficient ways to protect quantum information while maintaining the practical feasibility of operating with those protected qubits. \cite{NielsenChuang2010} \\
+The main challenge of quantum computation is the fragility of the physical systems used to implement qubits. In classical computation, information is encoded in macroscopic physical variables, and the logical states are separated by energy barriers that make them robust against environmental fluctuations. Compared to classical bits, qubits are heavily affected by environmental noise, which makes them degrade and lose their information due to decoherence. It is thus necessary to explore the most efficient ways to protect quantum information while maintaining the practical feasibility of operating with those protected qubits. \cite{NielsenChuang2010} \\
 
 \subsection{Overview and Simple Codes}
 \label{OverviewQEC}
 
 Fathoming the differences between classical and quantum error-corecting codes makes it necessary to pay attention to three difficulties that arise when we deal with quantum systems: The no-cloning theorem,, which prevents us from duplicating the state of a qubit; the continuous nature of errors; and the fact that observation in quantum mechanics collapses the wave function in one of the eigenstates of the measured observable (this is a non-unitary process, and thus recovery is impossible) \\  
 
-In order to overcome these difficulties, quantum error-correcting codes (QECC) utilze entanglement to encode a logical qubit across a multi-qubit system. This way, we can protect the quantum information via redundancy, without violating the no-cloning theorem. QEC protocols measure multi-qubit parity operators (error syndromes), avoiding the collapse of the wave function. The continuity problem will be confronted by discretizing the errors into a finite set of Pauli operations.\\
+In order to overcome these difficulties, quantum error-correcting codes (QECC) utilize entanglement to encode a logical qubit across a multi-qubit system. This way, we can protect quantum information through redundancy, without violating the no-cloning theorem. QEC protocols measure multi-qubit parity operators (error syndromes), avoiding the collapse of the wave function. The continuity problem will be confronted by discretizing the errors into a finite set of Pauli operations.\\
 
 We will build some basic intuition about quantum error correction models based on redundancy by looking at one of its earliest and simplest examples: the Shor Nine-Qubit Code. \\
 
@@ -39,11 +39,11 @@ Consider that we have physical qubits that are subject to random bit-flip errors
     \ket{1_L} = \ket{111}
 \end{align*}
 
-If the bit-flip error occurs in any qubit, we can diagnose this error without destroying the superposition by measuring the parity observables $Z_1 Z_2$ and $Z_2 Z_3$. Those observables compare the parities of their corresponding qubits, yielding a $\pm 1$ eigenvalue, positive if both compared qubits share the same state, negative if they are different. It is crucial to note that the measurement of the parity operators commute with the logical operators, ensuring that the superposition remains intact. Once we have detected the error, we can apply the appropiate recovery operation. \\
+If the bit-flip error occurs in any qubit, we can diagnose this error without destroying the superposition by measuring the parity observables $Z_1 Z_2$ and $Z_2 Z_3$. Those observables compare the parities of their corresponding qubits, yielding a $\pm 1$ eigenvalue, positive if both compared qubits share the same state, negative if they are different. It is crucial to note that the measurement of the parity operators commutes with the logical operators, ensuring that the superposition remains intact. Once we have detected the error, we can apply the appropiate recovery operation. \\
 
 This same procedure can be adapted to protect against phase-flip errors, modeled by the Pauli $Z$ operator. This is performed by applying a Hadamard transformation to each qubit after applying two sequential CNOT gates. It is an identical procedure, and it only differs in the basis we are working with. \\
 
-If we concatenate the bit-flip and phase-flip codes, we can protect against an arbitrary error on a single qubit. This is therefore a nine qubit code, with the bases states defined as follows:
+If we concatenate the bit-flip and phase-flip codes, we can protect against an arbitrary error on a single qubit. This is therefore a nine-qubit code, with the base states defined as follows:
 
 \begin{align*}
     \ket{0_L} = \frac{1}{2 \sqrt{2}} (\ket{000} + \ket{111}) (\ket{000} + \ket{111}) (\ket{000} + \ket{111}) \\
@@ -52,21 +52,11 @@ If we concatenate the bit-flip and phase-flip codes, we can protect against an a
 
 \begin{figure}[h]
 \centering
-\begin{quantikz}
-\lstick{$\ket{\psi}$} & \ctrl{3} & \ctrl{6} & \gate{H} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
-\lstick{$\ket{0}$}    &          &          &          & \qw & \targ{}  & \qw      & \qw \\
-\lstick{$\ket{0}$}    &          &          &          & \qw & \qw      & \targ{}  & \qw \\
-\lstick{$\ket{0}$}    & \targ{}  & \qw      & \gate{H} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
-\lstick{$\ket{0}$}    &          &          &          & \qw & \targ{}  & \qw      & \qw \\
-\lstick{$\ket{0}$}    &          &          &          & \qw & \qw      & \targ{}  & \qw \\
-\lstick{$\ket{0}$}    & \qw      & \targ{}  & \gate{H} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
-\lstick{$\ket{0}$}    &          &          &          & \qw & \targ{}  & \qw      & \qw \\
-\lstick{$\ket{0}$}    &          &          &          & \qw & \qw      & \targ{}  & \qw
-\end{quantikz}
+\input{shorcode.tex}
 \caption{Shor Code circuit}
 \end{figure}
 
-The syndrome measurment is perfomed in an analogous way. We first compare the first two qubits by applying the operator $Z_1 Z_2$, then we continue comparing each pair of neighboring qubits by applying the corresponding operators. We can detect the bit-flip errors on any of the qubit. In order to detect phase-flip errors, we compare the signs of each of the three-qubits blocks. \\
+The syndrome measurement is performed in an analogous way. We first compare the first two qubits by applying the operator $Z_1 Z_2$, then we continue comparing each pair of neighboring qubits by applying the corresponding operators. We can detect the bit-flip errors on any of the qubits. In order to detect phase-flip errors, we compare the signs of each of the three-qubit blocks. \\
 
 The Shor code allows us to detect bit-flip and phase-flip errors. In order to illustrate that this condition is enough to detect an arbitrary error, we will describe the noise by a trace-preserving operation $\mathcal{E}$. Given $\rho$ the density matrix of the system, the noise acting on the state can be expressed as:
 
@@ -80,7 +70,7 @@ This is called Kraus operator-sum representation, and will be discussed in more 
 
 Once we have built some intuition about QEC, we can construct a more general theory. \\
 
-Firstly, we need to give a mathematical description of our noise $\mathcal{E}$ \cite{Girvin2023}. Physically, noise represents an interaction between the system and the enviroment. Since we do not have access to the enviroment, the action of noise on the system appears to be a non-unitary operation, and we cannot describe our qubit as if it was in a pure state. This forces us to use the density matrix 
+Firstly, we need to give a mathematical description of our noise $\mathcal{E}$ \cite{Girvin2023}. Physically, noise represents an interaction between the system and the environment. Since we do not have access to the environment, the action of noise on the system appears to be a non-unitary operation, and we cannot describe our qubit as if it was in a pure state. This forces us to use the density matrix 
 
 \begin{equation} \label{density}
     \rho = \sum_i p_i \ket{ \psi_i } \bra{ \psi_i }
@@ -94,7 +84,7 @@ that represents the mixture of different pure states $\ket{ \psi_i }$ with proba
 
 which verifies that the map is positive. In fact, Choi's theorem on completely positive maps guarantees that any quantum operation admitting such a Kraus representation is inherently \textit{completely positive}, meaning it yields valid physical states even when applied to a subsystem of a larger entangled system. We will call the operation elements $\{E_i\}$ errors, and they represent the transformation of the quantum state under Hamiltonian parameter deviations from their ideal values. \\
 
-Now we want to generalize the basic ideas present in the Shor code to give a simple picture of how we can detect and correct errors in a quantum system. We firstly define a quantum error-correcting code as a subspace $C$ of the total Hilbert space, and the elements of $C$ will be called codewords. We encode our quantum states by projecting them into $C$ by an unitary operation $P$ that we will call the projector. The enconded system is then vulnerable to enviromental noise, which we model as a CPTP map $\mathcal{E}$. We perform a syndrome measurement to determine the error that has affected the system, and a recovery operation $\mathcal{R}$ returns the system to its original encoded state. \\
+Now we want to generalize the basic ideas present in the Shor code to give a simple picture of how we can detect and correct errors in a quantum system. We firstly define a quantum error-correcting code as a subspace $C$ of the total Hilbert space, and the elements of $C$ will be called codewords. We encode our quantum states by projecting them into $C$ by a unitary operation $P$ that we will call the projector. The encoded system is then vulnerable to environmental noise, which we model as a CPTP map $\mathcal{E}$. We perform a syndrome measurement to determine the error that has affected the system, and a recovery operation $\mathcal{R}$ returns the system to its original encoded state. \\
 
 When we project our state into the code subspace, we are essentially restricting the degrees of freedom of the system. This means that if our original Hilbert space for $n$ physical qubits is $2^n$-dimensional, the code subspace will be $2^k$-dimensional, where $k < n$. We will call $C$ a $[n,k]$ code, as we are encoding $k$ logical qubits into $n$ physical qubits. Once the noise acts on the encoded state $\ket{\psi_L}$, the system will be pushed into a different subspace. Specifically, each error $E_\alpha$ projects the state into an error subspace $C_\alpha = E_\alpha C$. Each error subspace has its corresponding projector $P_\alpha = E_\alpha P E_\alpha^\dagger$. \\
 
@@ -230,7 +220,7 @@ Therefore, a code that encodes $k$ logical qubits into $n$ physical qubits can b
 
 \subsubsection{Unitary Dynamics of Stabilizer Codes and the Gottessman-Knill Theorem}
 
-We have discussed the description of a subspace using stabilizer formalism. Now let's see how we can describe the dynamics of those subspaces under the action of noise and other quantum processes. Let $\ket{\psi}$ be an element of a code space $C(\mathcal{S})$ stabilized by $\mathcal{S}$. If we apply an unitary operation $U$,
+We have discussed the description of a subspace using stabilizer formalism. Now let's see how we can describe the dynamics of those subspaces under the action of noise and other quantum processes. Let $\ket{\psi}$ be an element of a code space $C(\mathcal{S})$ stabilized by $\mathcal{S}$. If we apply a unitary operation $U$,
 \begin{align*}
     U \ket{\psi} = U g \ket{\psi} = (U g U^\dagger) U \ket{\psi}
 \end{align*}
@@ -289,7 +279,7 @@ Therefore, undetectable and uncorrectable logical errors are exactly those in $N
 
 \subsection{Fault-Tolerant Quantum Computation}
 
-We have discussed how encoding quantum information into a subspace can protect the data from enviromental noise. However, the very process of encoding, syndrome measurement, as well as the application of logical quantum gates can also be affected by noise. The fundamental idea of fault-tolerant quantum computation is to design these processes in such a way that they do not propagate errors uncontrollably, and that the error correction procedure can still successfully correct the errors that occur during these operations. \\
+We have discussed how encoding quantum information into a subspace can protect the data from environmental noise. However, the very process of encoding, syndrome measurement, as well as the application of logical quantum gates can also be affected by noise. The fundamental idea of fault-tolerant quantum computation is to design these processes in such a way that they do not propagate errors uncontrollably, and that the error correction procedure can still successfully correct the errors that occur during these operations. \\
 
 Multi-qubit gates carry the risk of propagating errors from one physical qubit to another. The reiterative application of such operations can produce a single physical hardware failure to cascade into a large number of errors on the physical qubits encoding the logical state. If the weight of the resulting error exceeds the distance $d$ of the code, the error correction procedure will fail. Therefore, the design of fault-tolerant quantum circuits must ensure that errors do not propagate in a way that exceeds the error-correcting capabilities of the code. \\
 
@@ -299,8 +289,103 @@ We can prevent catastrophical error propagation by imposing the condition of tra
 No local quantum error-correcting code can implement a universal set of logical gates transversally.
 \end{theorem}
 
-
+This theorem implies that the implementation of transversal gates alone does not suffice to achieve universal fault-tolerant quantum computation.
 
 \section{Topological Quantum Error Correction}
 
+We have introduced the algebraic framework for diagonsing and correcting quantum errors. However, the practical implementation of QECC must face another critical challenge: the strict near-neighbor connectivity of physical qubits in real scalable hardware platforms, such as superconducting circuits \cite{QuantumSupremacy2019} \cite{Het_nyi_2024}. This constraint necessitates the development of quantum error-correcting codes that can be implemented with local interactions, i.e., families of stabilizer codes where the number of qubits in the support of any of the stabilizer generators must be bounded. This will be the depart point of topological quantum codes, a concept initiated by Kitaev's toric code \cite{Kitaev2003}.\\
+
+\subsection{Homology}
+
+We are interested in a specific family of stabilizer codes, namely surface codes. Those can be regarded as encoding quantum information in the homological degrees of freedom of a two-dimensional lattice. In order to understand the construction of surface codes, we need to introduce some concepts from algebraic topology \cite{bombin2013introductiontopologicalquantumcodes}. \\
+
+Let's consider a connected, closed, orientable surface of genus g, and define a lattice on it, with $V$ vertices. $E$ edges and $F$ faces. We will call 0-cells the vertices of the lattice, 1-cells the edges, and 2-cells the faces. \\
+
+We want to obtain the homology groups of this surface over $\mathbb{Z}_2$. For this purpose, we construct an abelian group for each dimension $i \in \{0, 1, 2\}$, generated by the sets of $i$-cells, where the field of coefficients is $\mathbb{Z}_2$. In this sense, if we consider a set of 1-cells $E = \{ e_1, e_2, \ldots, e_m \}$, we can represent it as a sum \\
+\begin{align*}
+    c = \sum_{i} c_i e_i \hspace{1cm} c_i = \begin{cases} 
+0 & e_i \notin E \\ 
+1 & e_i \in E 
+\end{cases}.
+\end{align*}
+
+Such sums are called 1-chain. We can consider addition of 1-chains (taking into account that the coefficients are in $\mathbb{Z}_2$ and hence $e_i + e_i = 0$), obtaining an abelian group structure on the set of 1-chains $C_1$. The elements of $C_1$ can be considered as binary vectors of length $E$, and topologically $C_1 \simeq \mathbb{Z}_2^E$. Equivalently, we define the group of 0-chains $C_0 \simeq \mathbb{Z}_2^V$ as the abelian group generated by the sets of 0-cells, and the group of 2-chains $C_2 \simeq \mathbb{Z}_2^F$ using the exact same procedure for 2-cells. \\
+
+The entire homology theory rests on the definition of the boundary operators $\partial_i : C_i \rightarrow C_{i-1}$, which are a family of group homomorphisms that take an $i$-chain and return its geometric boundary as an $(i-1)$-chain. Given our construction, we are interested in two boundary operators:\\
+\begin{itemize}
+    \item $\partial_1 : C_1 \rightarrow C_0$ takes a 1-chain (a set of edges) and returns the set of vertices that are the endpoints of an odd number of edges in the 1-chain. For instance, if we have a 1-chain $c = e_1 + e_2 + e_3$, where $e_1$ connects vertices $v_1$ and $v_2$, $e_2$ connects vertices $v_2$ and $v_3$, and $e_3$ connects vertices $v_3$ and $v_4$, then $\partial_1(c) = v_1 + v_4$, since $v_1$ and $v_4$ are the endpoints of an odd number of edges in $c$, while $v_2$ and $v_3$ are the endpoints of an even number of edges in $c$.
+    \item $\partial_2 : C_2 \rightarrow C_1$ takes a 2-chain (a set of faces) and returns the set of edges that are the endpoints of an odd number of faces in the 2-chain.
+\end{itemize}
+
+The boundary operators satisfy the property that they are nilpotent of degree 2, meaning that $im(\partial_{i+1}) \subseteq ker(\partial_i)$, or equivalently $\partial_i \circ \partial_{i+1} = 0$. This property is a direct consequence of the geometric interpretation of the boundary operators, since the boundary of a boundary is always empty. \\
+
+From these boundary operators, we construct two subgroups of $C_i$. The group of $i$-cycles $Z_i$ is defined as the kernel of $\partial_i$, that is, the set of $i$-chains that have an empty boundary. The group of $i$-boundaries $B_i$ is defined as the image of $\partial_{i+1}$, that is, the set of $i$-chains that are the boundary of some $(i+1)$-chain. Since $\partial_i \circ \partial_{i+1} = 0$, we have that $B_i \subseteq Z_i$. \\
+
+We can define the $i$-th homology group as the algebraic quotient group of $i$-cycles by $i$-boundaries:
+\begin{align*}
+    H_i = \frac{Z_i}{B_i}
+\end{align*}
+where the quotient group is defined as the set of equivalence classes of $i$-cycles, where two $i$-cycles are equivalent if they differ by a $i$-boundary, that is, the elements of $H_i$ are of the form $[z] = \{ z + b : b \in B_i \}$, where $z$ is any $i$-cycle. The homology groups are topological invariants, meaning that they do not depend on the specific lattice we have defined on the surface, but only on the topology of the surface itself. For a connected, closed, orientable surface of genus $g$, we have that $H_0 \simeq \mathbb{Z}_2$, $H_1 \simeq \mathbb{Z}_2^{2g}$ and $H_2 \simeq \mathbb{Z}_2$. \\
+
+\subsection{Surface Codes}
+
+Consider a lattice embedded in a closed surface, and attach a qubit to each edge. It is natural to see elements of the computational basis as 1-chains $c \in C_1$
+\begin{align*}
+    \ket{c} = \bigotimes_i \ket{c_i} 
+\end{align*}
+
+It is useful to define groups homeomorphism from $C_1$ to the group of Pauli operators $\mathcal{P}_n$, where $n$ is the number of edges in the lattice and hence the number of physical qubits. We can define two homomorphisms, $X: C_1 \rightarrow \mathcal{P}_n$ and $Z: C_1 \rightarrow \mathcal{P}_n$, such that 
+\begin{align*}
+    X_c = \bigotimes_i X^{c_i}_i \quad \text{and} \quad Z_c = \bigotimes_i Z^{c_i}_i.
+\end{align*}
+
+Given these homomorphisms, we can define the face and vertex operators as follows:
+\begin{align*}
+X_f:= \prod _{e \in \partial_2 f} X_e \quad \text{and} \quad Z_v := \prod _{e |v \in \partial_1 e} Z_e
+\end{align*}
+
+\begin{figure}
+\centering
+\input{surfacecode.tex}
+\caption{Lattice showing the arrangement of physical qubits and the support of the stabilizer generators.}
+\label{fig:surface_code}
+\end{figure}
+
+Those operators are ilustrated in figure \ref{fig:surface_code}, giving a clear intuition of their geometric meaning. The face and vertex operators commute with each other, and hence we can consider a stabilizer group $\mathcal{S}$ generated by them. In order to see the code subspace stabilized by $\mathcal{S}$, we can apply the projectors associated with each generator to any state of the total Hilbert space $\ket{c}$, $c \in C_1$:
+
+\begin{align*}
+    \prod_{f} \frac{I + X_f}{2} \prod_{v} \frac{I + Z_v}{2} \ket{c} \\
+\end{align*}
+
+Let's look at how each of the projectors acts on our arbitrary 1-chain state $\ket{c}$. The vertex operator $Z_v$ effectively checks the parity of the edges of the chain $c$ connected to the vertex $v$:
+\begin{align*}
+    Z_v \ket{c} = (-1)^k \ket{c} \quad \text{where} \ k = |\{ e \ | \  v \in \partial_1 e, \  e \in c \}|
+\end{align*}
+
+From the definition of the boundary operator $\partial_1$, we can see that $Z_v \ket{c} = \ket{c}$ if and only if $v$ is the endpoint of an even number of edges in $c$ and hence $v \notin \partial_1 c$. If $v \in \partial_1 c$, then $Z_v \ket{c} = - \ket{c}$ and the projector $(I+Z_v)\ket{c}=0$. This means that the only states that survive the application of all vertex projectors are those associated with 1-cycles, $\ket{z}$, with $z \in Z_1$. \\
+
+Now we apply the face projectors to our surviving states $\ket{z}$:
+
+\begin{align*}
+    \prod_f \frac{1+X_f}{2} \ket{z}
+\end{align*}
+
+We can expand the product of all face terms and obtain a sum over all posible subsets of faces $ \{f_i\} $. We also use that applying face operators on adjacent faces cancels out the operators on their shared edges:
+
+\begin{align*}
+    \prod_f (1+X_f) = \sum_{\{f_i\}} \prod_i X_{\partial_2 f_i} = \sum_{\{f_i\}} X_{\partial_2 (\sum_i f_i)}
+\end{align*}
+
+We notice that $\sum_i f_i$ is a 2-chain, and thus $\partial_2 (\sum_i f_i)$ is a 1-boundary. Therefore this is proportional to the sum over all possible 1-boundaries: \\
+
+\begin{align*}
+    \prod_f (1+X_f) \propto \sum_{b \in B_1} X_b
+\end{align*}
+
+Applying this to our cycle state $\ket{z}$ yields:
+\begin{align*}
+    \prod_f \frac{1+X_f}{2} \ket{z} &\propto \sum_{b \in B_1} X_b \ket{z} = \sum_{b \in B_1} \ket{z + b}
+\end{align*}
+
+This means that the states associated with two different cycles differing by a boundary are projected to the same state, and hence the code subspace stabilized by $\mathcal{S}$ is the vector space generated by the states $\ket{[z]} = \sum_{b \in B_1} \ket{z + b}$, where $[z]$ is the equivalence class of $z$ in $H_1$. Since $H_1 \simeq \mathbb{Z}_2^{2g}$, we have that the code subspace has dimension $2^{2g}$, and hence encodes $k=2g$ logical qubits into $n$ physical qubits. \\
 \end{document}
