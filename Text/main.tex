@@ -621,7 +621,14 @@ Alice then performs a proyective measure on her two qubits, obtaining two classi
     \item If $(m_1,m_2) = (1,1)$, the state is $\alpha \ket{1} - \beta \ket{0}$ ($ZX\ket{\psi}$).
 \end{itemize}
 
-To recover the original state, we need to transmit the two classical bits to Bob and perform the corresponding Pauli gate. \\
+To recover the original state, we need to transmit the two classical bits to Bob and perform the corresponding Pauli gate. The classical control is useful because it allows us to realize the teleportation protocol without violating connectivity restrictions. However, as PyZX does not have tools to translate classical operations to ZX diagramas, we apply the deferred measurement principle \cite{NielsenChuang2010} to represent the classical control in terms of quantum gates, as shown in figure \ref{fig:teleportation_circuit_CZ}.\\
+
+\begin{figure} [ht]
+    \centering
+    \input{tikz/teleportation_CZ.tex}
+    \caption{Stardard quantum teleportation circuit without classical control.}
+    \label{fig:teleportation_circuit_CZ}
+\end{figure}
 
 The election of quantum teleportation as the first routine to implement and optimize does not respond to an arbitrary volition, but rather to its structural relevance due to hardware limitations. The restricted local connectivity of fault-tolerant arquitectures makes the implementation of logical gates among distant planar patches prohibitive in terms of resources. Therefore, teleportation acquires an undisputed importance, allowing the propagation of quantum information along the processors, as well as being a fundamental ingredient for the transversal implementation of non-Clifford gates \cite{deBeaudrap2020}, surpassing the technical limitations imposed by the Eastin-Knill theorem.
 
@@ -742,6 +749,22 @@ Hence, by applying this specific sequence of operators and measuring the first t
     \label{fig:mermin_peres_circuit.tex}
 \end{figure}
 
+\section{Results}
+
+We discuss the PyZX implementations of the three quantum routines presented above.
+
+\subsection{Teleportation in PyZX}
+
+In order to implement quantum teleportation in PyZX, we need to represent the protocol using the operational description of standard circuit model, as in figure \ref{fig:teleportation_circuit_CZ}. Once we instantiate that circuit and translate it to a graph, the resulting diagram will model the realisation of the protocol with lattice surgery operations, considering the necessary classical operations to update the Pauli frame. \\
+
+Firstly, we instantiate the logical gates of the circuit and convert it to a graph. This conversion does not include neither the preparation of the initial states nor the final measures. For the EPR pair, we need to initialize both logical qubits in the base state $\ket{0}$, which is performed by adding a red degree-1 node at the begining of each line. Alice's projective measures are performed in an identical way. The resulting graph is shown in figure \ref{fig:teleportation1}. 
+
+\begin{figure} [ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/teleportation1.png}
+    \caption{ZX diagram corresponding to a standard quantum teleportation.}
+    \label{fig:teleportation1}
+\end{figure}
  
 \newpage
 \printbibliography

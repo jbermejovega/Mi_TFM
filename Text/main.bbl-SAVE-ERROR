@@ -55,6 +55,41 @@
       \field{volume}{574}
       \field{year}{2019}
     \endentry
+    \entry{deBeaudrap2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=294bcfc5ef677c61767ff332f90ff5ce}{%
+           family={Beaudrap},
+           familyi={B\bibinitperiod},
+           given={Niel},
+           giveni={N\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+        {{hash=71fa14996d0e66e018d607154b5136e8}{%
+           family={Horsman},
+           familyi={H\bibinitperiod},
+           given={Dominic},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{fullhash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{fullhashraw}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{bibnamehash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{authorbibnamehash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{authornamehash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{authorfullhash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{authorfullhashraw}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Quantum}
+      \field{note}{arXiv:1704.08670}
+      \field{title}{The ZX calculus is a language for surface code lattice surgery}
+      \field{volume}{4}
+      \field{year}{2020}
+      \field{pages}{218}
+      \range{pages}{1}
+    \endentry
     \entry{bombin2013introductiontopologicalquantumcodes}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=98ae8be70d3d42dc4f2766ef6cd717c6}{%
@@ -89,6 +124,145 @@
       \verb https://arxiv.org/abs/1311.0277
       \endverb
     \endentry
+    \entry{bravyi1998quantumcodeslatticeboundary}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=d13a9de47f70093033a69f639ddff65b}{%
+           family={Bravyi},
+           familyi={B\bibinitperiod},
+           given={S.\bibnamedelimi B.},
+           giveni={S\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=34266a35eedbd87dd79c5e408127a5e5}{%
+           family={Kitaev},
+           familyi={K\bibinitperiod},
+           given={A.\bibnamedelimi Yu.},
+           giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{adddaa49278b3b3a438910089b22b93e}
+      \strng{fullhash}{adddaa49278b3b3a438910089b22b93e}
+      \strng{fullhashraw}{adddaa49278b3b3a438910089b22b93e}
+      \strng{bibnamehash}{adddaa49278b3b3a438910089b22b93e}
+      \strng{authorbibnamehash}{adddaa49278b3b3a438910089b22b93e}
+      \strng{authornamehash}{adddaa49278b3b3a438910089b22b93e}
+      \strng{authorfullhash}{adddaa49278b3b3a438910089b22b93e}
+      \strng{authorfullhashraw}{adddaa49278b3b3a438910089b22b93e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arXiv}
+      \field{title}{Quantum codes on a lattice with boundary}
+      \field{year}{1998}
+      \verb{eprint}
+      \verb quant-ph/9811052
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/quant-ph/9811052
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/quant-ph/9811052
+      \endverb
+    \endentry
+    \entry{CHSH}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=362395d3270883cd4f3570714653e154}{%
+           family={Clauser},
+           familyi={C\bibinitperiod},
+           given={John\bibnamedelima F.},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=20dfaecae0b6e07694031e773dc00794}{%
+           family={Horne},
+           familyi={H\bibinitperiod},
+           given={Michael\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=5c4fd084ae2e5fc521e035996f280d20}{%
+           family={Shimony},
+           familyi={S\bibinitperiod},
+           given={Abner},
+           giveni={A\bibinitperiod}}}%
+        {{hash=574c952ed5086637156f707ee4233b94}{%
+           family={Holt},
+           familyi={H\bibinitperiod},
+           given={Richard\bibnamedelima A.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{4561bf63c2f49550872b468438c9375a}
+      \strng{fullhash}{b8702bafa524bdcd145f2a7bf4246770}
+      \strng{fullhashraw}{b8702bafa524bdcd145f2a7bf4246770}
+      \strng{bibnamehash}{4561bf63c2f49550872b468438c9375a}
+      \strng{authorbibnamehash}{4561bf63c2f49550872b468438c9375a}
+      \strng{authornamehash}{4561bf63c2f49550872b468438c9375a}
+      \strng{authorfullhash}{b8702bafa524bdcd145f2a7bf4246770}
+      \strng{authorfullhashraw}{b8702bafa524bdcd145f2a7bf4246770}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{15}
+      \field{journaltitle}{Phys. Rev. Lett.}
+      \field{month}{10}
+      \field{title}{Proposed Experiment to Test Local Hidden-Variable Theories}
+      \field{volume}{23}
+      \field{year}{1969}
+      \field{pages}{880\bibrangedash 884}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.23.880
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.23.880
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.23.880
+      \endverb
+    \endentry
+    \entry{delfosse2016generalizedsurfacecodespacking}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=076d8a0ce1fdc6ef28110693ccfc1a2f}{%
+           family={Delfosse},
+           familyi={D\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=1932fe22df54951ac7cf2c9b5e4e1e2c}{%
+           family={Iyer},
+           familyi={I\bibinitperiod},
+           given={Pavithran},
+           giveni={P\bibinitperiod}}}%
+        {{hash=7575941816e4f25600383f3d6cf5051f}{%
+           family={Poulin},
+           familyi={P\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{be2ae292a4b3c7a27559da747836c49b}
+      \strng{fullhash}{be2ae292a4b3c7a27559da747836c49b}
+      \strng{fullhashraw}{be2ae292a4b3c7a27559da747836c49b}
+      \strng{bibnamehash}{be2ae292a4b3c7a27559da747836c49b}
+      \strng{authorbibnamehash}{be2ae292a4b3c7a27559da747836c49b}
+      \strng{authornamehash}{be2ae292a4b3c7a27559da747836c49b}
+      \strng{authorfullhash}{be2ae292a4b3c7a27559da747836c49b}
+      \strng{authorfullhashraw}{be2ae292a4b3c7a27559da747836c49b}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arXiv}
+      \field{title}{Generalized surface codes and packing of logical qubits}
+      \field{year}{2016}
+      \verb{eprint}
+      \verb 1606.07116
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1606.07116
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1606.07116
+      \endverb
+    \endentry
     \entry{Eastin2009}{article}{}{}
       \name{author}{2}{}{%
         {{hash=039a940ee659ca468424c4db855f2ae9}{%
@@ -120,6 +294,50 @@
       \field{volume}{102}
       \field{year}{2009}
       \field{pages}{110502}
+      \range{pages}{1}
+    \endentry
+    \entry{Fowler2012}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=963708fd18e82e5d31c988cc8f3f7758}{%
+           family={Fowler},
+           familyi={F\bibinitperiod},
+           given={Austin\bibnamedelima G.},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=bdb44c753feea38b69ffdaeb660ee3fb}{%
+           family={Mariantoni},
+           familyi={M\bibinitperiod},
+           given={Matteo},
+           giveni={M\bibinitperiod}}}%
+        {{hash=25ae3182aa7d65d6b2ce4baea1970309}{%
+           family={Martinis},
+           familyi={M\bibinitperiod},
+           given={John\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=1614de2d4794b95eddeaf9af4abf59b2}{%
+           family={Cleland},
+           familyi={C\bibinitperiod},
+           given={Andrew\bibnamedelima N.},
+           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{84a613885db1b0a60f44410eace9a651}
+      \strng{fullhash}{cbf2d71fcf16a2f4952653225c12e775}
+      \strng{fullhashraw}{cbf2d71fcf16a2f4952653225c12e775}
+      \strng{bibnamehash}{84a613885db1b0a60f44410eace9a651}
+      \strng{authorbibnamehash}{84a613885db1b0a60f44410eace9a651}
+      \strng{authornamehash}{84a613885db1b0a60f44410eace9a651}
+      \strng{authorfullhash}{cbf2d71fcf16a2f4952653225c12e775}
+      \strng{authorfullhashraw}{cbf2d71fcf16a2f4952653225c12e775}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{3}
+      \field{journaltitle}{Physical Review A}
+      \field{note}{arXiv:1208.0928}
+      \field{title}{Surface codes: Towards practical large-scale quantum computation}
+      \field{volume}{86}
+      \field{year}{2012}
+      \field{pages}{032324}
       \range{pages}{1}
     \endentry
     \entry{Girvin2023}{article}{}{}
@@ -223,6 +441,104 @@
       \verb http://dx.doi.org/10.1103/PRXQuantum.5.040334
       \endverb
     \endentry
+    \entry{Kissinger_2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=0dcc317455baeefdf9b65140659af27d}{%
+           family={Kissinger},
+           familyi={K\bibinitperiod},
+           given={Aleks},
+           giveni={A\bibinitperiod}}}%
+        {{hash=32471ac72f0b6cde225e6514037aa7ea}{%
+           family={Wetering},
+           familyi={W\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           prefix={van\bibnamedelima de},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Open Publishing Association}%
+      }
+      \strng{namehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{fullhash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{fullhashraw}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{bibnamehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authorbibnamehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authornamehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authorfullhash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authorfullhashraw}{0b241f38a6c1c54d931108b8753deb57}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2075-2180}
+      \field{journaltitle}{Electronic Proceedings in Theoretical Computer Science}
+      \field{month}{5}
+      \field{title}{PyZX: Large Scale Automated Diagrammatic Reasoning}
+      \field{volume}{318}
+      \field{year}{2020}
+      \field{pages}{229\bibrangedash 241}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.4204/eptcs.318.14
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.4204/EPTCS.318.14
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.4204/EPTCS.318.14
+      \endverb
+    \endentry
+    \entry{PhysRevA.102.022406}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=0dcc317455baeefdf9b65140659af27d}{%
+           family={Kissinger},
+           familyi={K\bibinitperiod},
+           given={Aleks},
+           giveni={A\bibinitperiod}}}%
+        {{hash=32471ac72f0b6cde225e6514037aa7ea}{%
+           family={Wetering},
+           familyi={W\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           prefix={van\bibnamedelima de},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{fullhash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{fullhashraw}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{bibnamehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authorbibnamehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authornamehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authorfullhash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authorfullhashraw}{0b241f38a6c1c54d931108b8753deb57}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{2}
+      \field{journaltitle}{Phys. Rev. A}
+      \field{month}{8}
+      \field{title}{Reducing the number of non-Clifford gates in quantum circuits}
+      \field{volume}{102}
+      \field{year}{2020}
+      \field{pages}{022406}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevA.102.022406
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevA.102.022406
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevA.102.022406
+      \endverb
+    \endentry
     \entry{Kitaev2003}{article}{}{}
       \name{author}{1}{}{%
         {{hash=34266a35eedbd87dd79c5e408127a5e5}{%
@@ -251,6 +567,153 @@
       \field{year}{2003}
       \field{pages}{2\bibrangedash 30}
       \range{pages}{29}
+    \endentry
+    \entry{Knill_2000}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=28ceb9cd64d0f4e348c3765420128991}{%
+           family={Knill},
+           familyi={K\bibinitperiod},
+           given={Emanuel},
+           giveni={E\bibinitperiod}}}%
+        {{hash=358478dbb594b4c7cb16ffd5185de88b}{%
+           family={Laflamme},
+           familyi={L\bibinitperiod},
+           given={Raymond},
+           giveni={R\bibinitperiod}}}%
+        {{hash=5daea98ee3ae1fd5c324f48910549baa}{%
+           family={Viola},
+           familyi={V\bibinitperiod},
+           given={Lorenza},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society (APS)}%
+      }
+      \strng{namehash}{c117eaaec93202e47e3e516431940a39}
+      \strng{fullhash}{c117eaaec93202e47e3e516431940a39}
+      \strng{fullhashraw}{c117eaaec93202e47e3e516431940a39}
+      \strng{bibnamehash}{c117eaaec93202e47e3e516431940a39}
+      \strng{authorbibnamehash}{c117eaaec93202e47e3e516431940a39}
+      \strng{authornamehash}{c117eaaec93202e47e3e516431940a39}
+      \strng{authorfullhash}{c117eaaec93202e47e3e516431940a39}
+      \strng{authorfullhashraw}{c117eaaec93202e47e3e516431940a39}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1079-7114}
+      \field{journaltitle}{Physical Review Letters}
+      \field{month}{3}
+      \field{number}{11}
+      \field{title}{Theory of Quantum Error Correction for General Noise}
+      \field{volume}{84}
+      \field{year}{2000}
+      \field{pages}{2525\bibrangedash 2528}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/physrevlett.84.2525
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1103/PhysRevLett.84.2525
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1103/PhysRevLett.84.2525
+      \endverb
+    \endentry
+    \entry{Laghaout_2022}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=272222b162203a77fbe264d9e5c0e9e6}{%
+           family={Laghaout},
+           familyi={L\bibinitperiod},
+           given={Amine},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c97eea1e2b21e748051eff53a8a3a054}{%
+           family={Dikme},
+           familyi={D\bibinitperiod},
+           given={Altay},
+           giveni={A\bibinitperiod}}}%
+        {{hash=955249bb8dea93ae251378c6bd676593}{%
+           family={Reichel},
+           familyi={R\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=6c18c54f80b4ec499967f420a7de596f}{%
+           family={Björk},
+           familyi={B\bibinitperiod},
+           given={Gunnar},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{namehash}{2b0e922a72a6b43146f214b3dec4e8a3}
+      \strng{fullhash}{625770afad20956388f808d35272b52d}
+      \strng{fullhashraw}{625770afad20956388f808d35272b52d}
+      \strng{bibnamehash}{2b0e922a72a6b43146f214b3dec4e8a3}
+      \strng{authorbibnamehash}{2b0e922a72a6b43146f214b3dec4e8a3}
+      \strng{authornamehash}{2b0e922a72a6b43146f214b3dec4e8a3}
+      \strng{authorfullhash}{625770afad20956388f808d35272b52d}
+      \strng{authorfullhashraw}{625770afad20956388f808d35272b52d}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1361-6404}
+      \field{journaltitle}{European Journal of Physics}
+      \field{number}{5}
+      \field{title}{A demonstration of contextuality using quantum computers}
+      \field{volume}{43}
+      \field{year}{2022}
+      \field{pages}{055401}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1088/1361-6404/ac79e0
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1088/1361-6404/ac79e0
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1088/1361-6404/ac79e0
+      \endverb
+    \endentry
+    \entry{massey1977algebraic}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=e3479528ba26700352a68a29f0b3d813}{%
+           family={Massey},
+           familyi={M\bibinitperiod},
+           given={William\bibnamedelima S.},
+           giveni={W\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{e3479528ba26700352a68a29f0b3d813}
+      \strng{fullhash}{e3479528ba26700352a68a29f0b3d813}
+      \strng{fullhashraw}{e3479528ba26700352a68a29f0b3d813}
+      \strng{bibnamehash}{e3479528ba26700352a68a29f0b3d813}
+      \strng{authorbibnamehash}{e3479528ba26700352a68a29f0b3d813}
+      \strng{authornamehash}{e3479528ba26700352a68a29f0b3d813}
+      \strng{authorfullhash}{e3479528ba26700352a68a29f0b3d813}
+      \strng{authorfullhashraw}{e3479528ba26700352a68a29f0b3d813}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{3540902716 9783540902713 0387902716 9780387902715}
+      \field{series}{Graduate Texts in Mathematics}
+      \field{title}{Algebraic topology : an introduction}
+      \field{volume}{56}
+      \field{year}{1967}
+      \verb{urlraw}
+      \verb https://www.worldcat.org/title/algebraic-topology-an-introd/oclc/74404091&referer=brief_results
+      \endverb
+      \verb{url}
+      \verb https://www.worldcat.org/title/algebraic-topology-an-introd/oclc/74404091&referer=brief_results
+      \endverb
+      \keyw{55-01-algebraic-topology-instructional-exposition}
     \endentry
     \entry{NielsenChuang2010}{book}{}{}
       \name{author}{2}{}{%
@@ -283,6 +746,143 @@
       \field{edition}{10th Anniversary}
       \field{title}{Quantum Computation and Quantum Information}
       \field{year}{2010}
+    \endentry
+    \entry{vandaele2024qubitcountoptimizationusingzxcalculus}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=9e3edf9b85f6fc2d113907fe4d441543}{%
+           family={Vandaele},
+           familyi={V\bibinitperiod},
+           given={Vivien},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{9e3edf9b85f6fc2d113907fe4d441543}
+      \strng{fullhash}{9e3edf9b85f6fc2d113907fe4d441543}
+      \strng{fullhashraw}{9e3edf9b85f6fc2d113907fe4d441543}
+      \strng{bibnamehash}{9e3edf9b85f6fc2d113907fe4d441543}
+      \strng{authorbibnamehash}{9e3edf9b85f6fc2d113907fe4d441543}
+      \strng{authornamehash}{9e3edf9b85f6fc2d113907fe4d441543}
+      \strng{authorfullhash}{9e3edf9b85f6fc2d113907fe4d441543}
+      \strng{authorfullhashraw}{9e3edf9b85f6fc2d113907fe4d441543}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arXiv}
+      \field{title}{Qubit-count optimization using ZX-calculus}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2407.10171
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2407.10171
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2407.10171
+      \endverb
+    \endentry
+    \entry{watrous2025understandingquantuminformationcomputation}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=293768f7e4b6be4dbd1c7734383a8a73}{%
+           family={Watrous},
+           familyi={W\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{fullhash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{fullhashraw}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{bibnamehash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{authorbibnamehash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{authornamehash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{authorfullhash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{authorfullhashraw}{293768f7e4b6be4dbd1c7734383a8a73}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arXiv}
+      \field{title}{Understanding Quantum Information and Computation}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2507.11536
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2507.11536
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2507.11536
+      \endverb
+    \endentry
+    \entry{zhou2026topolslatticesurgerycompilation}{misc}{}{}
+      \name{author}{8}{}{%
+        {{hash=a1d1bcbd8398487531ddad5fc9d94071}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Junyu},
+           giveni={J\bibinitperiod}}}%
+        {{hash=d7964b7344608750fbd75e3a3d8a9025}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Yuhao},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=be0d1dc876c64e0b3f1667b0ebdb81df}{%
+           family={Decker},
+           familyi={D\bibinitperiod},
+           given={Ethan},
+           giveni={E\bibinitperiod}}}%
+        {{hash=3ef1fc768608f0f9e5d5c313a0e11a6f}{%
+           family={Kalloor},
+           familyi={K\bibinitperiod},
+           given={Justin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=74df0572c69a6ac41a2b81b669108287}{%
+           family={Weiden},
+           familyi={W\bibinitperiod},
+           given={Mathias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=05dc5cbc8547a8bd6b7cf5e8f99eb986}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Kean},
+           giveni={K\bibinitperiod}}}%
+        {{hash=809d357763f8092c3f757f47bde53305}{%
+           family={Iancu},
+           familyi={I\bibinitperiod},
+           given={Costin},
+           giveni={C\bibinitperiod}}}%
+        {{hash=c2b9d8eb5fd00705ccc285c25c5caee4}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Gushu},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{2d01bdd40aecdbdeef50d52fb1a5add9}
+      \strng{fullhash}{88d5513be55ca846248146028bf23ecf}
+      \strng{fullhashraw}{88d5513be55ca846248146028bf23ecf}
+      \strng{bibnamehash}{2d01bdd40aecdbdeef50d52fb1a5add9}
+      \strng{authorbibnamehash}{2d01bdd40aecdbdeef50d52fb1a5add9}
+      \strng{authornamehash}{2d01bdd40aecdbdeef50d52fb1a5add9}
+      \strng{authorfullhash}{88d5513be55ca846248146028bf23ecf}
+      \strng{authorfullhashraw}{88d5513be55ca846248146028bf23ecf}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arXiv}
+      \field{title}{TopoLS: Lattice Surgery Compilation via Topological Program Transformations}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2601.23109
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2601.23109
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2601.23109
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
