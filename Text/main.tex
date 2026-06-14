@@ -562,11 +562,13 @@ The implementation of quantum algorithms in fault-tolerant arquitectures require
 
 Given a quantum circuit $\mathcal{C}$, we have a translation map $\mathcal{T}: \mathcal{C} \rightarrow D_{ZX}$, where $D_{ZX}$ is a ZX diagram obtained by the substitution of rotations in $Z$ and $X$ bases by green and red spiders, as well as the initialization of qubits and measures \cite{vandaele2024qubitcountoptimizationusingzxcalculus}. \\
 
-The resource cost of a given computation is naturally captured by its space-time volume \cite{zhou2026topolslatticesurgerycompilation}, defined as its spatial footprint (number of qubits) times its execution time (number of error correction cycles required). As lattice surgery operations exhibit a direct correspondence with spiders in ZX calculus,  the topoloica deformation of a ZX diagram necessarily implies the reestructuration of its physical operations. Hence, the compilation problem can be formulated as an optimization problem:
+The resource cost of a given computation is naturally captured by its space-time volume \cite{zhou2026topolslatticesurgerycompilation}, defined as its spatial footprint (number of qubits) times its execution time (number of error correction cycles required). As lattice surgery operations exhibit a direct correspondence with spiders in ZX calculus,  the topological deformation of a ZX diagram necessarily implies the reestructuration of its physical operations. Hence, the compilation problem can be formulated as an optimization problem:
 \begin{align} \label{optimization}
     \min V(D'_{ZX}) \quad \text{such that} \quad [[D'_{ZX}]] = [[D_{ZX}]]
 \end{align}
-where $[[\cdot]]$ represents the lineal map described by the object. Applying rewrite rules allows to drastically optimize the metric.\\
+where $[[\cdot]]$ represents the lineal map described by the object. Applying rewrite rules allows to drastically optimize the metric. A quantitative evaluation of the space-time volume can be performed on ZX diagrams corresponding to lattice surgery procedures. The number of logical qubits required to implement a sequence of lattice surery operations represented by a ZX diagram is given by the maximum number of wires in any vertical cut of the diagram \cite{vandaele2024qubitcountoptimizationusingzxcalculus}.\\
+
+For the temporal cost of simple protocols, we can use the layer slicing procedure \cite{zhou2026topolslatticesurgerycompilation}. We identify the entry nodes of the diagram (usually, the open wires in the left) and they are assigned the layer index $L = 1$. Their topological neighbours are assigned $L=2$. We propagate this process, and each vertex is assignated a layer index $L(v) = \max _{u \in \text{fathers}(v)} L(u) + 1$.  The temporal cost of an algorithm can be approximated by the maximum index in the diagram. \\
 
 For the computational implementation of the problem, we will use PyZX framework, an open source python-based library specifically designed for diagramatic reasoning in ZX calculus \cite{Kissinger_2020}. At the software architecture level, PyZX abstract the problem usin two main data-structures: circuits and graphs. \\
 
@@ -757,15 +759,72 @@ We discuss the PyZX implementations of the three quantum routines presented abov
 
 In order to implement quantum teleportation in PyZX, we need to represent the protocol using the operational description of standard circuit model, as in figure \ref{fig:teleportation_circuit_CZ}. Once we instantiate that circuit and translate it to a graph, the resulting diagram will model the realisation of the protocol with lattice surgery operations, considering the necessary classical operations to update the Pauli frame. \\
 
-Firstly, we instantiate the logical gates of the circuit and convert it to a graph. This conversion does not include neither the preparation of the initial states nor the final measures. For the EPR pair, we need to initialize both logical qubits in the base state $\ket{0}$, which is performed by adding a red degree-1 node at the begining of each line. Alice's projective measures are performed in an identical way. The resulting graph is shown in figure \ref{fig:teleportation1}. 
+Firstly, we instantiate the logical gates of the circuit and convert it to a graph. This conversion does not include neither the preparation of the initial states nor the final measures. For the EPR pair, we need to initialize both logical qubits in the base state $\ket{0}$, which is performed by adding a red degree-1 node at the begining of each line. Alice's projective measures are performed in an identical way. Finally, the realization of the classical control admits different options:
+\begin{itemize}
+    \item \textbf{Partial Quantum Assimilation} We simply instantiate the circuit in figure \ref{fig:teleportation_circuit_CZ}. The resulting diagram will have operations among separate qubits, apparently violating the 2DNN connectivity. However, we do not interpret those edges as quantum interactions, but rather as the diagramatic representation of the classical control after the projective measures. This approach allows the simplification routines to absorb the measures subproducts, while also ensuring the semantic equivalence between the compiled graph and the original circuit.
+    \item \textbf{Strict Quantum Assimilation} We could consider both $CNOT$ and $CZ$ gates as genuine quantum interactions. In order to preserve 2DNN connectivity, this approach forces us to include a $SWAP$ gate in the first two qubits. The computational cost of this gate makes this option ignorable, as the interest of the teleportation protocol consists precisely in the possibility of replacing the necessity of $SWAP$ gates.
+    \item \textbf{Classical Control Externalization} We supress the classical control operations in our diagram, faithfully representing the quantum operations involved in the protocol. This option breaks the possibility of performing semantic verification.
+\end{itemize}
+
+If we follow the first approach, we should translate the effects of the projective measures using red degree-1 nodes representing the covectors corresponding with each of the possible results. The deterministic branch where Alice measures both of her qubits in state $\ket{0}$ is shown in figure \ref{fig:teleportation1}. By applying a $\pi$ phase in the projective nodes, we could represent results in the state $\ket{1}$.
 
 \begin{figure} [ht]
     \centering
-    \includegraphics[width=0.75\textwidth]{figures/teleportation1.png}
-    \caption{ZX diagram corresponding to a standard quantum teleportation.}
+    \includegraphics[width=0.5\textwidth]{figures/teleportation1.png}
+    \caption{ZX diagram corresponding to a standard quantum teleportation when Alice measures $(0,0)$.}
     \label{fig:teleportation1}
 \end{figure}
  
+For each of the diagrams $D_{ZX}(m_0,m_1)$, $m_0, m_2 \in \{0,1\}$, we perform the simplification routine of \texttt{full\_reduce}. The result is that the four diagrams collapse to the identity channel $\mathcal{I}$, as shown in figure \ref{fig:Identity_Channel}. This constitutes the validation of the implemented protocol. 
+
+\begin{figure} [ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/IdentityChannel.png}
+    \caption{ZX diagram corresponding to a standard quantum teleportation.}
+    \label{fig:Identity_Channel}
+\end{figure}
+
+The diagram in figure \ref{fig:teleportation1}, ignoring the interactions modeling the feedforward, can be viewed in terms of lattice surgery operations (given that the Pauli frame is correctly updated). We can break the simplification routine in each of its steps, and look for simplifications of the protocol that do not break the physical interpretation of the diagram as composition of primitives of lattice surgery. The four diagrams yield the same result prior to the total collapse to the identity channel, as shown in figure \ref{fig:teleportation2}. 
+
+\begin{figure} [ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/teleportation2.png}
+    \caption{Simplification of the teleportation diagram when Alice measures $(0, 0)$.}
+    \label{fig:teleportation2}
+\end{figure}
+
+The diagram has a reduced number of degree-3 nodes, but we notice that the simplification comes from the topological assimilation of part of the classical control, specifically the controlled $X$ operation, contracting it with the previous quantum CNOT operation. Therefore, the space-time volume of the protocol is not reduced. \\
+
+In order to compile the protocol we try by externalizing the classical control, exclusively considering the quantum operations. The corresponding diagram is shown in figure \ref{fig:teleportation3}
+\begin{figure} [ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/teleportation3.png}
+    \caption{Teleportation protocol without the classical control operations.}
+    \label{fig:teleportation3}
+\end{figure}
+
+Once again, instead of using the \texttt{full\_reduce} routine, we break it into each of its simplification steps. In this case, the complete routine yields an interesting diagram:
+\begin{figure} [ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/teleportation4.png}
+    \caption{Simplified teleportation protocol without the classical control operations.}
+    \label{fig:teleportation4}
+\end{figure}
+
+Previously, the classical control operations allowed the simplification routine to collapse the diagram to the logical identity. Now, the result of the routine can be put in a direct isomorphism with lattice surgery operations. We have a unique entry node representing the original state $\ket{\psi}_L$ encoded in a logical qubit conformed by three logical patches, and through two smooth splits we obtain three highly entangled logical qubits. By performing the projective measures on the two first qubits, and the corresponding Pauli operations on the third, we obtain the origianl state $\ket{\psi}_L$ in the last qubit. \\
+
+If we compare figures \ref{fig:teleportation3} and \ref{fig:teleportation4}, we see that the maximum layer index is reduced from 5 to 3. This represents a huge improvement in the execution time of the algorithm. Also, the pathwidth is reduced from 4 to 3, optimizing the number of logical patches necessary for the implementation. \\
+
+ The physical interpretation presents a problem: the logical patch where we want to teleport the unknown state is originally merged in the logical qubit where that unknown state is encoded. If we want to separate the original state and the target qubit, we can find another implementation in a previous step of the simplification routine:
+
+ \begin{figure} [ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/teleportation5.png}
+    \caption{}
+    \label{fig:teleportation5}
+\end{figure}
+
+Now, the original state represents an independent entry wire, while the two entangled logical qubits are firstly merged and prepared in the $\ket{0}_L$ state and then separated through a smooth split. The first two qubits are then entangled. This realization of the algorithm reduces the maximum layer index from 5 to 4, and the pathwidth is not reduced. It represents a smaller optimization, but a more useful realization.
 \newpage
 \printbibliography
 
