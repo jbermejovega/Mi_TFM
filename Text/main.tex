@@ -571,7 +571,7 @@ where $[[\cdot]]$ represents the lineal map described by the object. Applying re
 
 For the temporal cost of simple protocols, we can use the layer slicing procedure \cite{zhou2026topolslatticesurgerycompilation}. We identify the entry nodes of the diagram (usually, the open wires in the left) and they are assigned the layer index $L = 1$. Their topological neighbours are assigned $L=2$. We propagate this process, and each vertex is assignated a layer index $L(v) = \max _{u \in \text{fathers}(v)} L(u) + 1$.  The temporal cost of an algorithm can be approximated by the maximum index in the diagram, which we will call the topological depth. \\
 
-For simple diagrams, the computation of this metric is quite straightforward, but when the protocol requires a high number of quantum gates, the complexity of the diagrams hinders the computation of its topological depth. Multi-qubit gates such as the \texttt{CNOT} or \texttt{CZ} appear as vertical lines in the ZX diagrams, amd the resolution of this ambiguity in one specific operational instantiation of the gate result in different graphs, hence altering the layer slicing procedure. Different physical realizations for the multi-qubit gates imply different topological depths. The task of reducing the rounds of error correction rounds, and hence of improving the execution time of the algorithm can be seen as an optimization problem in graph theory. We can try to formalize it by giving a more precise definition of topological depth.
+For simple diagrams, the computation of this metric is quite straightforward, but when the protocol requires a high number of quantum gates, the complexity of the diagrams hinders the computation of its topological depth. Multi-qubit gates such as the \texttt{CNOT} or \texttt{CZ} appear as vertical lines in the ZX diagrams, amd the resolution of this ambiguity in one specific operational instantiation of the gate result in different graphs, hence altering the layer slicing procedure. Different physical realizations for the multi-qubit gates imply different topological depths. The task of reducing the rounds of error correction rounds, and hence of improving the execution time of the algorithm can be seen as an optimization problem in graph theory \cite{v1983data}. We can try to formalize it by giving a more precise definition of topological depth.
 
 \begin{definition}
     Let $G = (V,E)$ be a directed acyclic graph. We define a set of entry vertices as:
@@ -604,13 +604,39 @@ Given this model for our diagrams, the time-optimization problem in a graph $G$ 
 
 In order to construct an algorithmic solution for the problem, let's consider how an specific iteration could be performed: we start reading the graph from the input vertices (in figure \ref{fig:graph_model}, from the left to the right) until we find the first vertex attached to a vertical edge $e$. The two vertices connected by this edge, $v$ and $u$ have a primitive layer index $L_{in}(u)$ and $L_{in}(v)$ respectively, determined by their preceeding horizontal edges (and, for later iterations, by their preceeding directed vertical edges too). If we direct $e$ from $u \rightarrow v$, the new depth of $v$ will be $L_{out}(v) = \max \{L_{in}(v), L_{in}(u) + 1\}$, and $L_{out}(u) = L_{in}(u)$. It is inmediate that, if $L_in{v} > L_{in}(u)$, then $L_out{v} = L_{in}(u)$. Therefore, directing the edge towards the vertex with the highest depth does not produce any change on the depth of the vertices, and hence, on the total topological depth of the graph.\\ 
 
-If we have a vertical edge connecting two vertices $(u,v)$ with $L_{in}(v) = L_{in}(u)$, we need to define a new metric $S: V \rightarrow \mathbb{N}$, which we will call the shallowness of the vertex, and it will be given by the length of the horizontal path connecting the vertex in the argument and the output vertex of the wire. For an edge $(u,v)$ with $L_{in}(v) = L_{in}(u) = k$ and, without loss of generality, $S(u) < S(v)$, let's consider the local impact of the orientation on the cost of their respective paths $L_{out}(v) + S(v)$ and $L_{out}(u) + S(u)$:
+If we have a vertical edge connecting two vertices $(u,v)$ with $L_{in}(v) = L_{in}(u)$, or strictly vertical edges, we need to define a new metric $S: V \rightarrow \mathbb{N}$, which we will call the shallowness of the vertex, and it will be given by the length of the horizontal path connecting the vertex in the argument and the output vertex of the wire. For an edge $(u,v)$ with $L_{in}(v) = L_{in}(u) = k$ and, without loss of generality, $S(u) < S(v)$, let's consider the local impact of the orientation on the cost of their respective paths $L_{out}(v) + S(v)$ and $L_{out}(u) + S(u)$:
 \begin{itemize}
     \item $u \rightarrow v$: $L_{out}(u) = k$, and the total cost of its path will be $k + S(u)$. $L_{out}(v) = k+1$ and the total cost will be $k+1 + S(v)$. The maximum local cost is $\max \{k + S(u), k + 1 + S(v)\} = k + 1 + S(v) $
     \item $v \rightarrow u$: $L_{out}(v) = k$, and the total cost of its path will be $k + S(v)$. $L_{out}(u) = k+1$ and the total cost will be $k+1 + S(u)$. The maximum local cost is $\max \{k + S(v), k + 1 + S(u)\} = k + S(v) $
 \end{itemize}
 
-Hence, the orientation of the vertical edge should be towards the shallowest vertex. If $L_{in}(u) = L_{in}(v)$ and $R(u) = R(v)$,   Under complex structures, this rule could not provide the optimal orientation, but it will suffice for our purpose. \\
+Hence, the orientation of the vertical edges should be towards the shallowest vertex. If we already assigned an orientation to every edge between vertices with different in-path depth (those do not produce any change in the depth, neither locally nor globally), we can take a global approach for a systematic treatment of the vertical edges. We have already proved that the orientation of those vertical edges produces an increase in the total length of one the wires. If we have several vertical edges connecting the two wires in vertices with the same in-path depth, once we direct the first one from the left, the remaining edges will have a trivial orientation, as the depth of the vertices in one of the wires will increase by one. This means that if we direct all those vertical edges towards the same wire, the depth of the vertices in that wire will only increase by one. For instance, in figure \ref{fig:graph_algorithm}, if we direct $(u_1, v_1)$ and $(u_2, v_2)$ upwards, $L_{out}(u_3) = L_{in}(u_3) + 1$. If a given wire $W$ has those edges (between vertices with the same in-path depth) with two different wires, and we direct all of them towards $W$, the total depth of the wire will also increase by 1.\\
+
+\begin{figure} [ht]
+    \centering
+    \input{tikz/graph_algorithm.tex}
+    \caption{}
+    \label{fig:graph_algorithm}
+\end{figure}
+
+In cases where there are subsequent vertical edges connecting vertices $u_i$ and $v_j$ such that $L_{in}(v_j) - L_{in}(u_i) = 1$, (in figure \ref{fig:graph_algorithm}, $(u_3, v_4)$) either orientation for the vertical edges will increase the depth of $v_j$, while if the vertical edges are directed towards the wire that contains $v_j$, then $L_{in}(u_i) = L_{out}(u_i)$. Therefore, in those situations the vertical edges should be directed towards the wire containing $v_j$. \\
+
+If this case does not hold, a decision must be made, as one of the wires will necessarily suffer an increase in its depth. As we try to minimize the global depth of the graph, we make this decision by looking at the total length of all the wires. Firstly, we find the longest wire in the diagram, and direct all the strictly vertical edges attached to it towards its neighbours. This way we ensure that the total depth of the diagram does not increase. The remaining strictly vertical vertices will be oriented in an alternate way: if a wire already has strictly vertical edges oriented towards it (as in the case of the neighbours of the longest wire), the remaining strictly vertical edges attached to it will be also oriented towards it. The same thing applies for wires with directed vertical edges towards its neighbours. The criteria can be visualized in figure \ref{fig:orientation_assignation}. If there are two wires with maximum length separated by an odd number of wires, this method does not present any conflict. If they are separated by an even number of wires, any of those intermediate wires would increase its total depth by 2, so the total depth of the diagram could increase by 1. Considering the case discussed above, that could also increase the lenght of the longest wire by 1, this method provides an orientation $\mathcal{O}$ such that the topological depth of the graph $D(G^\mathcal{O}) \leq D(G) + 2$.\\
+
+\begin{figure} [ht]
+    \centering
+    \input{tikz/orientation_assignation.tex}
+    \caption{}
+    \label{fig:orientation_assignation}
+\end{figure}
+
+The algorithm would be as follows:
+
+\begin{itemize}
+    \item We assign the trivial orientations for the vertical edges connecting two vertices with different in-path depth.
+    \item Among those oriented vertical edges, we search for edges $(u_i, v_j)$ satisfying $L_{in}(v_j) - L_{in}(u_i) = 1$. If there are previous strictly vertical edges connecting the same two wires, those are directed towards the wire containing $v_j$
+    \item We identify the wires with the greatest length, and apply the assignation represented in \ref{fig:orientation_assignation}
+\end{itemize}
 
 For the computational implementation of the problem, we will use PyZX framework, an open source python-based library specifically designed for diagramatic reasoning in ZX calculus \cite{Kissinger_2020}. At the software architecture level, PyZX abstract the problem usin two main data-structures: circuits and graphs. \\
 
@@ -956,7 +982,7 @@ Hence, we extract those amplitudes and obtain the output probabilities for each 
 
 The translation of the Mermin-Peres game, from its abstraction in quantum information theory towards its realization in a fault-tolerant architecture,requires some modifications to the previous diagrams, attending to the spatial limitations imposed by the hardware. \\
 
-The initial preparation of the Bell pairs assume global connectivity, which is manifested in the first two \texttt{CNOT} gates of figure \ref{fig:MS1}. The physical execution of those gates is not viable under the hardware restrictions we are considering for our architecture. In order to fix this and preserve 2DNN connectivity, we are forced to use a \texttt{SWAP} gate, which constitutes an importat operative bottleneck. The realization of the protocol will the begin by the preparation of two Bell pairs, and then we will perform a \texttt{SWAP} gate to interchange one qubit from each pair.
+The initial preparation of the Bell pairs assume global connectivity, which is manifested in the first two \texttt{CNOT} gates of figure \ref{fig:MS1}. The physical execution of those gates is not viable under the hardware restrictions we are considering for our architecture. In order to fix this and preserve 2DNN connectivity, we are forced to use a \texttt{SWAP} gate, which constitutes an importat operative bottleneck. The realization of the protocol will then begin by the preparation of two Bell pairs, and then we will perform a \texttt{SWAP} gate to interchange one qubit from each pair.
 
 \begin{figure} [ht]
     \centering
@@ -989,7 +1015,7 @@ We can compare the computational cost metrics for the primitive and the optimize
 
 \begin{table}[ht]
     \centering
-    \caption{Distribución de 36 datos en 4 filas y 9 columnas, con su variable.}
+    \caption{}
     \label{tab:optimization_data}
     \begin{tabular}{lccccccccc} 
         \toprule
