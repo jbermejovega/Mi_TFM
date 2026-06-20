@@ -247,6 +247,7 @@
     \fancyhead[RO]{\small\textsc{\MakeLowercase{\rightmark}}%
                     \quad{\normalsize\bfseries\color{USred}\thepage}}%
 }
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -268,9 +269,25 @@
     According to the guidelines, every dissertation should include a short english abstract at the beginning. In the abstract, you describe in general terms what is your dissertation about, the main points you want to make, and any important consequences that may arise.
 \end{otherlanguage}
 
+\chapter{Introduction}
 
+The theory of quantum error correction has not always been a major field inside quantum computation \cite{Kastoryano2018}. The theoretical landscape shifted when Peter Shor introduced his factoring algorithm, where the profound algorithmic breakthrough faced the skepticism of contemporary physicists about the physical viability of quantum computers. This skepticism was entirely justified, as quantum states are notoriously fragile, and the prospect of building a large-scale quantum system with sufficiently low error rates was regarded as impossible.
 
-\chapter{Quantum Error Correction}
+Classical error correction protocols inherently rely on redundancy, usually achieved by copying information into ancillary bits and applying methods like the majority voting procedures \cite{Girvin2023}. The principles of quantum mechanics strictly forbid this approach, as the no-cloning theorem states that an unknown quantum state cannot be duplicated. Furthermore, classical error correction requires accessing the state of the system, while in a quantum systems the measurement would imply the collapse of the wavefunction and hence the loss of quantum information. Finally, while classical errors are completely discrete, quantum errors are continuous transformations, which certainly implies a higher difficulty to recover the state prior to the error.
+
+The paradigm drastically transformed in the mid-1990s, as Peter Shor \cite{PhysRevA.102.022406} and Andrew Steane \cite{steane1996} discovered the first quantum error-correcting codes, based on the application of specific multi-qubit operators that always yield binary results. This allowed the continuum of possible errors to collapse into a discrete set of correctable faults without accessing the state of the system.
+
+The field of quantum error correction has developed towards the paradigm of fault-tolerant quantum computing, i.e., the design of large-scale quantum processors capable of performing quantum error correction procedures to achieve arbitrarily low error rates. The foundational principles of building reliable logical systems from inherently unreliable physical components with the study of structure invariants were established in the mid-20th century. Notably, Joyn von Neumann's work on probabilistic loics and the synthesis of reliable macroscopic automata from unreliable components \cite{neumann56probabilistic}, as well as Moore and Shannon's construction of reliable circuits using less reliable relays \cite{shannon1938symbolic}.
+
+As classical computational demands grew, the necessity to managge increasing physical complexity produced the Very Large-Scale Integration (VLSI) revolution, pioneered bby methodologies such as the Mead-Conway design rules \cite{mead1980introduction}, allowing engineers to abstract the physical components into standarized logical cells. The separation of the logical kernel from the physical layout enables a massive reorganization of computational workflows. Today, fault-tolerant quantum computing is underoing an analogous historical transition, as the research shifts from the strictly empirical approach to a tightly interated technology-design co-optimization methodology.
+
+The goal of the present work is completely framed inside this transition. Specifically, we want to implement ZX calculus, a tool for diagrammatic reasoning, as a compiler for quantum protocols in fault-tolerant architectures. 
+
+The thesis will be structured as follows. First, in chapter \ref{ch:IQC}, we will review some basic concepts about quantum computation, building the foundational basis for the discussion later. In chapter \ref{ch:QEC}, we will give a broad overview of the theory of quantum error correction, as well as the approach for the encoding of logical qubits represented in the stabilizer codes. Chapter \ref{ch:TQEC} will show how stabilizer formalism and the homological approach of algebraic topology allow for the construction of an specific family of quantum error-correcting codes, of enormous relevance in current fault-tolerant quantum computing. Later, in chapter \ref{ch:LS} we will present how we can implement multi-qubit gates acting on the logical qubits defined in the previous chapter, and how this set of operations is naturally captured by ZX calculus in chapter \ref{ch:ZXC}. Finally, chapter \ref{ch:PP} presents the practical problem, the technical details of the implementation using the python library PyZX, and chapter \ref{ch:Results} show the results of said practical problem.
+
+\chapter{Introduction to Quantum Computation} \label{ch:IQC}
+
+\chapter{Quantum Error Correction} \label{ch:QEC}
 
 The main challenge of quantum computation is the fragility of the physical systems used to implement qubits. In classical computation, information is encoded in macroscopic physical variables, and the logical states are separated by energy barriers that make them robust against environmental fluctuations. Compared to classical bits, qubits are heavily affected by environmental noise, which makes them degrade and lose their information due to decoherence. It is thus necessary to explore the most efficient ways to protect quantum information while maintaining the practical feasibility of operating with those protected qubits. \cite{NielsenChuang2010} 
 
@@ -542,7 +559,9 @@ We can prevent catastrophical error propagation by imposing the condition of tra
 No local quantum error-correcting code can implement a universal set of logical gates transversally.
 \end{theorem}
 
-This theorem implies that the implementation of transversal gates alone does not suffice to achieve universal fault-tolerant quantum computation.
+This theorem implies that the implementation of transversal gates alone does not suffice to achieve universal fault-tolerant quantum computation. For the QECC we will be interested, the set of gates that can be implemented transversally are exactly the Clifford gates \cite{Bravyi_2013}
+
+If we want universal quantum computation with transversal gates, the barrier imposed by the Eastin-Knill theorem can surpassed through magic state injection \cite{Bravyi_2005}, which enables the transversal execution of a $T$ gate (Clifford+$T$ is a universal set of quantum gates). This is performed by the preparation and injection of a magic state $\ket{T}$ which, via the execution of Clifford gates, consumes this resource and executes a $T$ gate on the data qubit. For the preparation of said states, the method of maggic state distillation is used. The method consists on the "purification" of a certain number of copies of a mixed state, and, altough we are not interested now in the specific realisation of the method, we should not that it is an expensive procedure in terms of its computational cost.
 
 \section{CSS Codes}
 
@@ -570,7 +589,7 @@ A state stabilized by $X(v)$ must be a coherent superposition of states $\ket{x}
 \end{align}
 which implies that any row $g_i$ in $H_X$ satisfies $H_Z g_i^T = 0$. So, if $C_1$ is the subspace given by the parity check matrix $H_Z$ and $C_2$ is the subspace given by the generator matrix $H_X$, $C_2 \subset C_1$, so for any two elements $z \in C_1$ and $x \in C_2$, $z+x$ is also an element $C_1$. From the discussion above, the subspace simultaneously stabilized by the rows of $H_X$ and $H_Z$ is equivalent to $C_1 / C_2$. CSS codes can then be seen as a family of stabilizer codes where the stabilizer is generated only by $X$ and $Z$ operators. 
 
-\chapter{Topological Quantum Error Correction}
+\chapter{Topological Quantum Error Correction} \label{ch:TQEC}
 
 We have introduced the algebraic framework for diagonsing and correcting quantum errors. However, the practical implementation of QECC must face another critical challenge: the strict near-neighbor connectivity of physical qubits in real scalable hardware platforms, such as superconducting circuits \cite{QuantumSupremacy2019} \cite{Het_nyi_2024}. This constraint necessitates the development of quantum error-correcting codes that can be implemented with local interactions, i.e., families of stabilizer codes where the number of qubits in the support of any of the stabilizer generators must be bounded. This will be the depart point of topological quantum codes, a concept initiated by Kitaev's toric code \cite{Kitaev2003}.\\
 
@@ -828,7 +847,7 @@ Syndrome qubits are placed in the centre of each plaquette and in each vertex, a
 
 In practice, we avoid the application of correcting physical operations once we detect errors, as they could introduce more noise in the system. Instead, we keep track the accumulation of errors by use of a classical registry known as the Pauli frame \cite{deBeaudrap2020}. The positive Pauli frame is that in which the encoded state is a +1 eigenstate of all the stabilizers.
 
-\chapter{Lattice Surgery}
+\chapter{Lattice Surgery} \label{ch:LS}
 
 Surface codes provide a promising method to encode logical qubits in fault-tolerant architectures. However, the standard transversal realisation of multi-qubit gates, where the physical qubits of different planar patches should interact with each other, would violate the 2-Dimensional Nearest-Neighbour (2DNN) connectivity. Lattice surgery constitutes a very useful approach, as it performs multi-qubit operations exclusively interacting the boundaries of the patches. Let's construct this approach using certain tools of category theory, as introduced in \cite{Cowtan_2024} and \cite{cowtan2025fastfaulttolerantlogicalmeasurements}. 
 
@@ -1011,7 +1030,7 @@ The logical operators $X_{L,A}$ and $X_{L,B}$ in the resulting patches conmmute 
 
 The probabilistic character of the $Z$ measurements implies once again the $\pm1$ results. If all measurement outcomes are +1, then the separation is perfect and does not require any correction. However, if one measurement yields an eigenvalue $-1$, the two truncated Z-type plaquette stabilizers adjacents to said measurement collapse towards their negative subspace. We update the Pauli frame and simulate a chain of X operators to correct the error. The rough split is naturally described by the Kraus operator $U_R = \ket{++} \bra{+} + \ket{--} \bra{-}$.
 
-\chapter{ZX calculus}
+\chapter{ZX calculus} \label{ch:ZXC}
 
 The ZX calculus is a graphical tool for the diagramatic representation and manipulation of quantum computation, presenting an alternative to the standard quantum circuit model, firstly presented in \cite{Coecke_2011}. We will give a brief introduction, as it will be a fundamental tool for the present work, but a complete review of the notation can be consulted in \cite{KissingerWetering2024Book}.
 
@@ -1309,11 +1328,26 @@ For the negative branch of the lattice merge, we have to consider the adaptation
 \ = \ K_{1,R}
 \end{equation}
 
-For this work, we will restrict the study to the positive branch. This is physically justified as the dynamic of the negative branch does not alter the structure of the information processes, and it differs from the positive branch only by the action of additional Pauli operators. As the aparition of those Pauli operators is univocally heralded by the classical bit resulting from the merging measurement, they can be absorbed by the classical control system, avoiding the necessity of corrections in the quantum hardware. Thereforem, when compilin the algorithm the hardware executes the same sequence of splits and merges, independently of the eigenvalues obtained.
+For this work, we will restrict the study to the positive branch. This is physically justified as the dynamic of the negative branch does not alter the structure of the information processes, and it differs from the positive branch only by the action of additional Pauli operators. As the aparition of those Pauli operators is univocally heralded by the classical bit resulting from the merging measurement, they can be absorbed by the classical control system, avoiding the necessity of corrections in the quantum hardware. Therefore, when compiling the algorithm the hardware executes the same sequence of splits and merges, independently of the eigenvalues obtained.
 
 It has been proven that the ZX calculus trascends its function as a a mere graphical notation system, establishing itself as a native languae of fault-tolerant quantum computation. Its set of diagrammatic rewrite rules can be implemented for an automated optimization of quantum protocols.
 
-\chapter{Practical Problem}
+To prove the utility of ZX calculus, let's use it to present a simple implementation of a $T$ gate with lattice surgery. As we already discussed in chapter \ref{ch:QEC}, magic states permit the realisation of non-Clifford operations on surface codes. A $T$ gate specifically requires a magic state and teleportation to execute a $\pi/4$ rotation on a logical qubits. In \cite{deBeaudrap2020}, they propose an efficient execution of the $T$ gate with lattice surgery operations. Restricting ourselves to the positive branch, we have:
+
+\begin{equation}
+    \begin{ZX}[phase in label above]
+        \zxZ{\pi/4} \ar[rd] &             &       \\
+        \zxN{} \rar         & \zxZ{} \rar & \zxN{}
+    \end{ZX}
+    \ = \
+    \begin{ZX}[phase in label above]
+        \zxN{} \rar & \zxZ{\pi/4} \rar & \zxN{}
+    \end{ZX}
+\end{equation}
+
+The diagram in the left represents the preparation of a state $\ket{A} \propto \ket{0} = e^{i\pi/4} \ket{1}$, and merging said state with the target logical qubit, and the rules of ZX calculus prove it to be equivalent to a $\pi /4$ rotation.
+
+\chapter{Practical Problem} \label{ch:PP}
 
 The implementation of quantum algorithms in fault-tolerant architectures requires their treatment in a model that does not impose the unitary evolution of standard circuit models. The practical problem of this work can be summarized as the compilation of quantum protocols in terms of a problem of topological optimization of tensor networks using ZX calculus.
 
@@ -1575,7 +1609,7 @@ Hence, by applying this specific sequence of operators and measuring the first t
     \label{fig:mermin_peres_circuit}
 \end{figure}
 
-\chapter{Results}
+\chapter{Results} \label{ch:Results}
 
 We discuss the PyZX implementations of the three quantum routines presented above.
 
@@ -1740,9 +1774,7 @@ The initial preparation of the Bell pairs assume global connectivity, which is m
     \label{fig:MS3}
 \end{figure}
 
-Compared to the implementation of the CHSHS game, the Mermin-Peres games does not require the use of non-Clifford gates, thus suppressing the necessity of magic-states distillation. The diagram has a higher number of nodes and edges, so the obtention of its topological depth requires the algorithmic approach for the orientation of vertical edges presented in the section of practical problem. This case, as well as the other eight diagrams, constitute trivial cases for the execution of the algorithm, as there are no vertical edges connecting nodes with the same depth. 
-
-We can build some intuition of the method by looking at figure \ref{fig:MS4}. For the trivial cases where $L_{in}(u) = L_{in}(v)$, we just need to draw the vertex in an explicit layer distribution, so each of the vertical edges will be drawn as a diagonal and will be oriented in the direction of time flux.
+Compared to the implementation of the CHSHS game, the Mermin-Peres games does not require the use of non-Clifford gates, thus suppressing the necessity of magic-states distillation. The diagram has a higher number of nodes and edges, so the obtention of its topological depth requires the algorithmic approach for the orientation of vertical edges presented in chapter \ref{ch:PP}. This case, as well as the other eight diagrams, constitute trivial cases for the execution of the algorithm, as there are no vertical edges connecting nodes with the same depth. We can build some intuition of the method by looking at figure \ref{fig:MS4}. For the trivial cases where $L_{in}(u) = L_{in}(v)$, we just need to draw the vertex in an explicit layer distribution, so each of the vertical edges will be drawn as a diagonal and will be oriented in the direction of time flux.
 
 \begin{figure}
     \centering
@@ -1762,7 +1794,7 @@ The next step is to perform the simplification routine on each diagram. The simp
 
 We can compare the computational cost metrics for the primitive and the optimized diagrams. The data in table \ref{tab:optimization_data} shows that the simplification method reduces the depth of our diagrams in average around an $18\%$, and the pathdwidth is reduced on average approximately in a $9\%$. Out of the 9 diagrams, 7 of them had a reduced depth once they were simplified, and 5 of them reduced their pathwidth. All the graphs improved at least one of the metrics after the optimization. 
 
-\begin{table}[h]
+\begin{table}[ht]
     \centering
     \caption{}
     \label{tab:optimization_data}
@@ -1778,7 +1810,21 @@ We can compare the computational cost metrics for the primitive and the optimize
     \end{tabular}
 \end{table}
 
+\chapter{Conclusions}
 
+Throughout this dissertation, we have addressed one of the fundamental challenges for the viability of quantum computations: the fragility of quantum information against decoherence and environmental noise. For the mitigation of the negative effects of such phenomena, fault-tolerant quantum computing relies on the theory of Quantum Error Correction, and, specifically, on topological codes. 
+
+The treatment of said structures for the implementation of transversal gates without violating connectivity restrictions require the introduction of lattice surgery, a set of fundamental procedures that allow us to construct an operational model for fault-tolerant quantum computation.
+
+The execution of the primitive operations of lattice surgery implies projective measurements on a given set of physical qubits, and the results of said operations alter the dimensionality of the code subspace. Therefore, lattice surgery breaks the unitary evolution of quantum system, hence making the standard circuit model for quantum computation unable to faithfully represent the dynamics of the logical qubits under the actions of merges and splits. 
+
+We have seen how ZX calculus can perform the role of graphical language for fault-tolerant computation, constituting the analytical core of this work. ZX calculus does not only provide the visual support to compile quantum protocols into lattice surgery operations, but also the algebraic tools for the validation and optimization of said protocols.
+
+The validation of the logical architectures has been materialized through the PyZX ecosystem. For the teleportation protocol, the set of diagrams parametrized by the measurement outcomes has been evaluated. The graph theoretic reduction routine has collapsed this set of diagrams towards an identity channel, thus verifying the functionality of quantum teleportation in a faul-tolerant architecture, which constitutes a trascendental protocol for the transversal execution of non-Clifford gates, as well as for the execution of operations requiring the interaction of distant qubits.
+
+Analogously, the evaluation of the CHSH game has validated the entanglement and quantum correlations. The magic square game has demonstrated the possibility of contextuality in this paradigm.
+
+Finally, the execution of optimization routines has yielded a significan reduction of the space-time volume of the different protocols we have discussed, materializing the optimization potential of ZX calculus.
 
 \newpage
 \printbibliography
