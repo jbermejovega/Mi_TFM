@@ -1,0 +1,101 @@
+\begin{tikzpicture}[
+    % Define styles for vertices and edges
+    vertex/.style={circle, fill=black, inner sep=2pt, minimum size=5pt},
+    % FIX: Added inner braces around the Stealth parameters to hide the comma from the parser
+    Hedge/.style={->, >={Stealth[{length=2.5mm, width=2mm}]}, thick, blue!80!black},
+    Vedge/.style={thick, red!80!black}
+]
+
+% ---------------------------------------------------------
+% 1. DRAWING THE VERTICES (V)
+% ---------------------------------------------------------
+
+% Wire 1 (W1) - Top
+\node[vertex, label=above:$W_1$] (u10) at (0, 3) {};
+\node[vertex, label=above:$u_{1,1}$] (u11) at (2, 3) {};
+\node[vertex, label=above:$u_{1,2}$] (u12) at (4, 3) {};
+\node[vertex, label=above:$u_{1,3}$] (u13) at (6, 3) {};
+\node[vertex, label=above:$u_{1,4}$] (u14) at (8, 3) {};
+
+% Wire 2 (W2)
+\node[vertex, label=above left:$W_2$] (u20) at (0, 2) {};
+\node[vertex, label=above left:$u_{2,1}$] (u21) at (2, 2) {};
+\node[vertex, label=above left:$u_{2,2}$] (u22) at (4, 2) {};
+\node[vertex, label=above left:$u_{2,3}$] (u23) at (6, 2) {};
+\node[vertex, label=above left:$u_{2,4}$] (u24) at (8, 2) {};
+
+% Wire 3 (W3)
+\node[vertex, label=below left:$W_3$] (u30) at (0, 1) {};
+\node[vertex, label=below left:$u_{3,1}$] (u31) at (2, 1) {};
+\node[vertex, label=below left:$u_{3,2}$] (u32) at (4, 1) {};
+\node[vertex, label=below left:$u_{3,3}$] (u33) at (6, 1) {};
+\node[vertex, label=below left:$u_{3,4}$] (u34) at (8, 1) {};
+
+% Wire 4 (W4) - Bottom
+\node[vertex, label=below:$W_4$] (u40) at (0, 0) {};
+\node[vertex, label=below:$u_{4,1}$] (u41) at (2, 0) {};
+\node[vertex, label=below:$u_{4,2}$] (u42) at (4, 0) {};
+\node[vertex, label=below:$u_{4,3}$] (u43) at (6, 0) {};
+\node[vertex, label=below:$u_{4,4}$] (u44) at (8, 0) {};
+
+% ---------------------------------------------------------
+% 2. DRAWING HORIZONTAL EDGES (E_H) - Directed / Time-like
+% ---------------------------------------------------------
+
+% Wire 1
+\draw[Hedge] (u10) -- (u11);
+\draw[Hedge] (u11) -- (u12);
+\draw[Hedge] (u12) -- (u13);
+\draw[Hedge] (u13) -- (u14);
+\draw[Hedge] (u14) -- (10,3);
+
+% Wire 2
+\draw[Hedge] (u20) -- (u21);
+\draw[Hedge] (u21) -- (u22);
+\draw[Hedge] (u22) -- (u23);
+\draw[Hedge] (u23) -- (u24);
+\draw[Hedge] (u24) -- (10,2);
+
+% Wire 3
+\draw[Hedge] (u30) -- (u31);
+\draw[Hedge] (u31) -- (u32);
+\draw[Hedge] (u32) -- (u33);
+\draw[Hedge] (u33) -- (u34);
+\draw[Hedge] (u34) -- (10,1);
+
+% Wire 4
+\draw[Hedge] (u40) -- (u41);
+\draw[Hedge] (u41) -- (u42);
+\draw[Hedge] (u42) -- (u43);
+\draw[Hedge] (u43) -- (u44);
+\draw[Hedge] (u44) -- (10,0);
+
+% ---------------------------------------------------------
+% 3. DRAWING VERTICAL EDGES (E_V) - Undirected / Hardware constrained
+% ---------------------------------------------------------
+
+% Connection between W1 and W2
+\draw[Vedge] (u11) -- (u21);
+\draw[Vedge] (u13) -- (u23);
+
+% Connection between W2 and W3
+\draw[Vedge] (u22) -- (u32);
+
+% Connection between W3 and W4
+\draw[Vedge] (u33) -- (u43);
+\draw[Vedge] (u34) -- (u44);
+
+% ---------------------------------------------------------
+% 4. LEGEND
+% ---------------------------------------------------------
+\begin{scope}[shift={(1.5, -1.5)}]
+    % Box for legend
+    \draw[fill=gray!10, rounded corners] (-0.5, 0.5) rectangle (7.5, -1.8);
+    
+    \node[vertex, label=right:{$V$ (Vertices)}] at (0, 0) {};
+    % FIX: Removed the backslash space (\ ) to prevent undefined sequence warnings
+    \draw[Hedge] (0, -0.6) -- (0.6, -0.6) node[right, text=black] { $E_H$ (Directed, Time-like)};
+    \draw[Vedge] (0, -1.2) -- (0.6, -1.2) node[right, text=black] { $E_V$ (Undirected, Neighbour Gates)};
+\end{scope}
+
+\end{tikzpicture}

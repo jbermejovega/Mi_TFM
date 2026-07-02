@@ -1,0 +1,6 @@
+\begin{quantikz}[row sep=0.4cm, column sep=0.4cm]
+\lstick{Alice ($A_1$)} & \gate{H} & \ctrl{2} & \qw      & \ctrl{1}   & \gate{H} & \gate{X} & \meter{} \\
+\lstick{Alice ($A_2$)} & \gate{H} & \qw      & \ctrl{2} & \control{} & \gate{H} & \gate{X} & \meter{} \\
+\lstick{Bob ($B_1$)}   & \qw      & \targ{}  & \qw      & \qw        & \qw      & \qw      & \meter{} \\
+\lstick{Bob ($B_2$)}   & \qw      & \qw      & \targ{}  & \qw        & \gate{H} & \qw      & \meter{}
+\end{quantikz}
