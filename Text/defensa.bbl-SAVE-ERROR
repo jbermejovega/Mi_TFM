@@ -1,0 +1,159 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{deBeaudrap2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=294bcfc5ef677c61767ff332f90ff5ce}{%
+           family={Beaudrap},
+           familyi={B\bibinitperiod},
+           given={Niel},
+           giveni={N\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+        {{hash=71fa14996d0e66e018d607154b5136e8}{%
+           family={Horsman},
+           familyi={H\bibinitperiod},
+           given={Dominic},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{fullhash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{fullhashraw}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{bibnamehash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{authorbibnamehash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{authornamehash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{authorfullhash}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \strng{authorfullhashraw}{6f0fb9726fc267a9637dc1585ef3e60d}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Quantum}
+      \field{note}{arXiv:1704.08670}
+      \field{title}{The ZX calculus is a language for surface code lattice surgery}
+      \field{volume}{4}
+      \field{year}{2020}
+      \field{pages}{218}
+      \range{pages}{1}
+    \endentry
+    \entry{KissingerWetering2024Book}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=0dcc317455baeefdf9b65140659af27d}{%
+           family={Kissinger},
+           familyi={K\bibinitperiod},
+           given={Aleks},
+           giveni={A\bibinitperiod}}}%
+        {{hash=32471ac72f0b6cde225e6514037aa7ea}{%
+           family={Wetering},
+           familyi={W\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           prefix={van\bibnamedelima de},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Preprint}%
+      }
+      \strng{namehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{fullhash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{fullhashraw}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{bibnamehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authorbibnamehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authornamehash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authorfullhash}{0b241f38a6c1c54d931108b8753deb57}
+      \strng{authorfullhashraw}{0b241f38a6c1c54d931108b8753deb57}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Picturing Quantum Software: An Introduction to the ZX-Calculus and Quantum Compilation}}
+      \field{year}{2024}
+    \endentry
+    \entry{NielsenChuang2010}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=afe17482fc813e497188aee3b3783879}{%
+           family={Nielsen},
+           familyi={N\bibinitperiod},
+           given={Michael\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=415ddff2f58b25977b1a2dedf18f4501}{%
+           family={Chuang},
+           familyi={C\bibinitperiod},
+           given={Isaac\bibnamedelima L.},
+           giveni={I\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{456599bb4a61c2e997e2a7e1a21b25b4}
+      \strng{fullhash}{456599bb4a61c2e997e2a7e1a21b25b4}
+      \strng{fullhashraw}{456599bb4a61c2e997e2a7e1a21b25b4}
+      \strng{bibnamehash}{456599bb4a61c2e997e2a7e1a21b25b4}
+      \strng{authorbibnamehash}{456599bb4a61c2e997e2a7e1a21b25b4}
+      \strng{authornamehash}{456599bb4a61c2e997e2a7e1a21b25b4}
+      \strng{authorfullhash}{456599bb4a61c2e997e2a7e1a21b25b4}
+      \strng{authorfullhashraw}{456599bb4a61c2e997e2a7e1a21b25b4}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{10th Anniversary}
+      \field{title}{Quantum Computation and Quantum Information}
+      \field{year}{2010}
+    \endentry
+    \entry{watrous2025understandingquantuminformationcomputation}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=293768f7e4b6be4dbd1c7734383a8a73}{%
+           family={Watrous},
+           familyi={W\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{fullhash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{fullhashraw}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{bibnamehash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{authorbibnamehash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{authornamehash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{authorfullhash}{293768f7e4b6be4dbd1c7734383a8a73}
+      \strng{authorfullhashraw}{293768f7e4b6be4dbd1c7734383a8a73}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arXiv}
+      \field{title}{Understanding Quantum Information and Computation}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2507.11536
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2507.11536
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2507.11536
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

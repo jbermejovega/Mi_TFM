@@ -22,3 +22,4 @@ Juani quiere que mire cuestiones de teleportation y protocolos que se puedan eje
 Elijo libreria pyzx. Hay que explicar este repositorio a la gente del Fisymat. Explicar ZX en términos de físicos. Relacionar topologia algebraica y homología. Buscar dependencias de pyzx. Circuitos que parecen grafos.
 
 Artículo de ZX con lattice surgery. Intentar código para circuitos del paper de Beaudrap. Relacionar con Filipa con surface code para hacer CZ CCZ en 3D. Papers Horsman, Browne, Filipa. Simetría en Filipa  para reducción de puertas, simetría en Horsman para recompilar, etc... Simetría como tema central y quantum compiling.
+
