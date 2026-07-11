@@ -14,6 +14,7 @@
 \usepackage[style=numeric, backend=biber]{biblatex}
 \addbibresource{referencias.bib}
 
+% REVIEW: This branch adds only non-rendering review comments for the defense pass.
 \title{Quantum Protocols for Topological Codes with ZX Calculus}
 \author{Salvador Márquez Grima}
 \date{July 2026}
@@ -23,6 +24,7 @@
 
 \begin{frame}{Introduction}
     \begin{itemize}
+        % REVIEW: Remove the double space after "The" and use consistent sentence punctuation across the bullets.
         \item The  extreme fragility of quantum information requires the use of methods to detect and correct errors.
         \item Main difficulties: no-cloning theorem; measurement destroys information; and continuous errors.
         \item Solutions: Redundant encoding of information; multi-qubit parity operators; and discretization of errors
@@ -33,12 +35,14 @@
 \begin{frame}{Quantum Error Correcting Codes}
 \begin{itemize}
     \item We are encoding $k$ logical qubits into $n$ physical qubits, with $n>k$, by imposing some constraints on the physical qubits and thus defining a $2^k$-dimensional subspace of the total Hilbert space, called the code subspace. \cite{NielsenChuang2010}
+    % REVIEW: "undeformed" is unusual here; consider "distinct, orthogonal syndrome subspaces" if that is the intended condition.
     \item Errors push the state out of the code subspace. If each error corresponds to different undeformed and orthogonal subspaces, we can detect and correct them.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Stabilizer Codes}
     \begin{definition}
+        % REVIEW: "n-dimensional Pauli group" may be read as Hilbert-space dimension; consider "$n$-qubit Pauli group".
         We define the n-dimensional Pauli group $\mathcal{P}_n$ as the set of all $n$-fold tensor products of Pauli matrices and the identity, with overall phases $\pm 1, \pm i$. A stabilizer is some abelian subgroup $ \mathcal{S} \subseteq \mathcal{P}_n$ that does not contain $-I$
     \end{definition}
 
@@ -47,12 +51,14 @@ The stabilizer can determine a code subspace, called the stabilizer code $C(\mat
     $C(\mathcal{S}) \equiv \{ \ket{\psi} \in \mathcal{H} : g \ket{\psi} = \ket{\psi}; \ \forall g \in \mathcal{S} \}$
 \end{center}
 \begin{alertblock}{Proposition}
+% REVIEW: This slide reuses $k$ for the number of independent generators after using $k$ for logical qubits. Consider $r$ generators and dimension $2^{n-r}$, or explicitly relate it to the encoded-qubit count.
 If $\mathcal{S}$ is an Abelian subgroup of $\mathcal{P}_n$ that does not contain $-I$, then the code space $C(\mathcal{S})$ stabilized by $\mathcal{S}$ has dimension $2^{n - k}$, where $k$ is the number of independent generators of $\mathcal{S}$. \cite{Girvin2023}
 \end{alertblock}
 \end{frame}
 
 \begin{frame}{Topological Codes}
 
+    % REVIEW: This starts from a closed surface, while the next slide introduces boundaries; a short transition sentence would prevent a conceptual jump.
     Consider a two-dimensional lattice embedded in a closed surface, with physical qubits attached to each edge. We can define a chain complex of vector spaces over $\mathbb{Z}_2$ by constructing the standard sets of $i$-chains $C_i$ for $i=0,1,2$, where the basis elements are the vertices, edges, and faces of the lattice. The boundary operators $\partial_i: C_i \to C_{i-1}$ are defined as usual. \cite{bombin2013introductiontopologicalquantumcodes}
 
     We can identify elements of the computational basis with 1-chains on the lattice $\ket{c} = \bigotimes_i \ket{c_i}$, where the field of coefficients is $\mathbb{Z}_2$. Homomorphisms from $C_1$ to $\mathcal{P}_n$ are defined as follows:
@@ -70,6 +76,7 @@ If $\mathcal{S}$ is an Abelian subgroup of $\mathcal{P}_n$ that does not contain
 
 The stabilizer generators are:
 \begin{align*}
+    % REVIEW: Check the vertex-star notation $e | v \in \partial_1 e$; $e : v \in \partial e$ or $e \ni v$ may read more clearly.
     X_f:= \prod _{e \in \partial_2 f} X_e \quad \text{and} \quad Z_v := \prod _{e |v \in \partial_1 e} Z_e
 \end{align*}
 
@@ -83,6 +90,7 @@ The stabilizer generators are:
         \label{fig:surface_code_boundaries}
     \end{figure}
     
+% REVIEW: Confirm that "open/closed" boundary terminology matches the rough/smooth labels expected from the cited surface-code boundary construction.
 Top and bottom edges are closed boundaries, left and right edges are open boundaries. \cite{bravyi1998quantumcodeslatticeboundary}
 
 \end{frame}
@@ -101,6 +109,7 @@ Top and bottom edges are closed boundaries, left and right edges are open bounda
     \begin{figure}
         \centering
         \input{tikz/rough_merging.tex}
+        % REVIEW: Duplicate label with the previous figure; use a unique label if cross-references are added later.
         \label{fig:surface_code_transversal}
     \end{figure}
 
@@ -125,6 +134,7 @@ Kraus operators for a rough merging operation on a planar surface code:
 \begin{equation*}
 K_{0,R} = \ket{+}_M \bra{++} + \ket{-}_M \bra{--} \quad K_{1,R} = \ket{+}_M \bra{+-} + \ket{-}_M \bra{-+}
 \end{equation*}
+% REVIEW: The next ZX slide also uses smooth-operation notation $K_{0,S}$ and $K_{1,S}$; consider previewing the S/R convention here.
 Kraus operator for a rough splitting operation on a planar surface code:
 \begin{equation*}
     U_R = \ket{++} \bra{+} + \ket{--} \bra{-}
@@ -134,6 +144,7 @@ Kraus operator for a rough splitting operation on a planar surface code:
 
 \begin{frame}{ZX Calculus}
 \begin{align*}
+    % REVIEW: Check that the input/output ordering in the bras and kets matches the convention used by the ZX diagrams later in the slides.
     \zx{ \leftManyDots{n} \zxZ{\alpha} \rightManyDots{m}} &= \ket{\underbrace{0 \cdots 0}_{m}} \bra{\underbrace{0 \cdots 0}_{n}} + e^{i \alpha} \ket{{\underbrace{1 \cdots 1}_{m}}} \bra{\underbrace{1 \cdots 1}_{n}} \\
     \zx{\leftManyDots{n} \zxX{\alpha} \rightManyDots{m}} &= \ket{\underbrace{+ \cdots +}_{m}} \bra{\underbrace{+ \cdots +}_{n}} + e^{i \alpha} \ket{{\underbrace{- \cdots -}_{m}}} \bra{\underbrace{- \cdots -}_{n}}
 \end{align*}
@@ -148,6 +159,7 @@ Rewrite rules for ZX calculus as presented in \cite{KissingerWetering2024Book}.
 
 \begin{frame}{ZX Calculus and Lattice Surgery}
 
+% REVIEW: Define the S/R suffixes in text before the equations, or put "smooth" and "rough" in the slide caption.
 Correspondence between ZX diagrams and the Kraus operators of a lattice merging operation \cite{deBeaudrap2020}:
 
 \begin{align*}
@@ -179,6 +191,7 @@ Correspondence between ZX diagrams and the Kraus operators for a lattice splitti
 \begin{ZX}
     \zxN{} & \zxZ{} \ar[r,start anchor=south,end anchor=south] & \zxNoneDouble|{}
 \end{ZX} \
+% REVIEW: The trailing backslash above looks accidental; if it is spacing, prefer an explicit LaTeX spacing command or remove it.
 = \ U_S
 \quad \quad
 \begin{ZX}
@@ -190,6 +203,7 @@ Correspondence between ZX diagrams and the Kraus operators for a lattice splitti
 
 \begin{frame}{Logical Verification and Optimization of Quantum Protocols}
     \begin{itemize}
+        % REVIEW: Consider naming what is preserved by the rewrite rules here: linear map, scalar, global phase, or measurement-branch semantics.
         \item The rewrite rules of ZX calculus can simplify complex diagrams, conserving the represented linear map and allowing for the logical verification of quantum protocols.
         \item The simplification of ZX diagrams can also lead to the optimization of quantum protocols, reducing the number of operations and resources required for their implementation.
     \end{itemize}
@@ -197,6 +211,7 @@ Correspondence between ZX diagrams and the Kraus operators for a lattice splitti
 
 \begin{frame}{Quantum Protocols with ZX Calculus}
     \begin{itemize}
+        % REVIEW: Teleportation is listed in the agenda but no teleportation slide appears later; either add that example or remove it from this list.
         \item Quantum Teleportation.
         \item CHSH Game.
         \item Magic Square Game.
@@ -225,10 +240,12 @@ Correspondence between ZX diagrams and the Kraus operators for a lattice splitti
     \mathcal{A}_{x,y}(m_0, m_1) =  \bra{m_0 m_1} U_{x,y} \ket{00}
     \end{equation*}
 
+    % REVIEW: If this is the optimal CHSH strategy, consider giving the exact value $\cos^2(\pi/8) \approx 0.8536$.
     We can verify that $P_{quantum} \approx 0.85$. 
 \end{frame}
 
 \begin{frame}{Magic Square Game}
+    % REVIEW: Verify the parity convention: the standard magic-square game is often stated as row product $+1$ and column product $-1$.
     Alice and Bob are given a $3 \times 3$ square which they must fill in the following way: Alice is assigned a random row and Bob a random column. They must complete their corresponding cells with values $\pm1$, in such a way that the row must contain an odd number of plus signs and the column an odd number of minus signs, and the cell the both share must be filled with the same number by each player. They are not allowed to communicate, but they can share an entangled state. The winning condition is that the bits in the same position in Alice's and Bob's matrices must be equal. $P_{classic} \leq 0.875$. 
     Quantum strategy with $P_{quantum} = 1$ \cite{Laghaout_2022}:
     \[
@@ -249,10 +266,12 @@ Correspondence between ZX diagrams and the Kraus operators for a lattice splitti
         \centering
         \input{tikz/mermin_peres_circuit.tex}
     \end{figure}
+    % REVIEW: Add one sentence connecting the observable table to the selected first-column/third-row circuit.
     Circuit implementation of the magic square game for the first column and the third row.
 \end{frame}
 
 \begin{frame}
+    % REVIEW: Consider giving the image-only Magic Square frames explicit titles for navigation and PDF outlines.
     \begin{figure}
         \centering
         \includegraphics[width=0.5\textwidth]{figures/MS1.png}
@@ -281,6 +300,7 @@ Correspondence between ZX diagrams and the Kraus operators for a lattice splitti
     Simplified ZX diagram for the magic square game. First column and third row.
     \begin{table}
     \centering
+    % REVIEW: Prefer \resizebox{\textwidth}{!}{...} in beamer so the table follows the active slide width instead of a fixed 12cm.
     \resizebox{12cm}{!}{%
     \begin{tabular}{lccccccccc} 
         \toprule
